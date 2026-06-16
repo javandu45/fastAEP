@@ -8,11 +8,13 @@ from topfarm.plotting import XYPlotComp
 from FAST_AEP.utils import *
 
 import time
+import warnings
+warnings.filterwarnings("ignore")
 
 
 class optifast:
 
-    def __init__(self, wind_farm, wind_farm_model, min_spacing=2, normalization=True):
+    def __init__(self, wind_farm, wind_farm_model, min_spacing=2, normalization=True, x_0=None, y_0=None):
 
         self.wind_farm = wind_farm
         self.wind_farm_model = wind_farm_model
@@ -27,18 +29,25 @@ class optifast:
         self.windTurbines = turbine_generator(wind_farm)
 
         # Generate initial positions
-        self.x_0, self.y_0 = generate_random_array(n_tur=self.n_turbines,
-                                            turbine=self.windTurbines,
-                                            spacing=self.min_spacing,
-                                            limits=self.wf_limits,
-                                            seed=None)
+        if x_0 is None and y_0 is None:
+            self.x_0, self.y_0 = generate_random_array(n_tur=self.n_turbines,
+                                                turbine=self.windTurbines,
+                                                spacing=2 if self.min_spacing is None else self.min_spacing,
+                                                limits=self.wf_limits,
+                                                seed=2)
+        else:
+            self.x_0 = x_0
+            self.y_0 = y_0
         
         # Center coordinates if necessary
         self.min_x = self.wf_limits[:, 0].min()
         self.min_y = self.wf_limits[:, 1].min()
 
-        self.x_0 = self.x_0 - self.min_x
-        self.y_0 = self.y_0 - self.min_y
+        if x_0 is None and y_0 is None:
+
+            # Avoid double centering if initial positions are already centered
+            self.x_0 = self.x_0 - self.min_x
+            self.y_0 = self.y_0 - self.min_y
 
         # Center limits
         limits_centered = np.zeros_like(self.wf_limits)
@@ -56,7 +65,7 @@ class optifast:
             time_i = time.time()
             self.aep_0 = self.wind_farm_model.aep(self.x_0, self.y_0)
             time_f = time.time()
-            print(f"Initial AEP calculated in {time_f - time_i:.2f} seconds")
+            # print(f"Initial AEP calculated in {time_f - time_i:.4f} seconds")
 
         else:
             self.aep_0 = 1
@@ -111,18 +120,21 @@ class optifast:
 
     def _setup_constraints(self):
 
-        # Distance constraints
-        minimum_distance = self.min_spacing * self.windTurbines.diameter()
-        turbine_separation_constrain = SpacingConstraint(min_spacing=minimum_distance)
-
         # Boundary constraints
         wf_limits_const = XYBoundaryConstraint(self.wf_limits, 'polygon')
 
-        # return [turbine_separation_constrain, wf_limits_const]
-        return wf_limits_const
+        # Distance constraints
+        if self.min_spacing is not None:
+            minimum_distance = self.min_spacing * self.windTurbines.diameter()
+            turbine_separation_constrain = SpacingConstraint(min_spacing=minimum_distance)
+
+            return [turbine_separation_constrain, wf_limits_const]
+        
+        else:
+            return [wf_limits_const]
         
 
-    def setup_problem(self, tolerance=1, expected_cost=1, max_iter=100, seed=None):
+    def setup_problem(self, tolerance=1, expected_cost=1, max_iter=100):
 
         # Generate functions and constraints
         aep_function = self._setup_objective_function()
@@ -143,6 +155,7 @@ class optifast:
                                         maxiter=max_iter,
                                         tol=tolerance)
 
+        # Normalize if necessary
         if self.normalization:
 
             self.x_0_norm = self.x_0 / self.max_x

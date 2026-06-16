@@ -151,3 +151,23 @@ for _, row in top_20_wf.iterrows():
     with open(json_path, "w") as f:
         json.dump(turbine_data, f, indent=2)
 
+
+# Add coordinates in UTM to the top_20_wf DataFrame
+
+from pyproj import Transformer
+
+def latlon_to_utm(lat, lon):
+    zone_number = int((lon + 180) / 6) + 1
+    epsg_code = 32600 + zone_number if lat >= 0 else 32700 + zone_number
+
+    transformer = Transformer.from_crs("EPSG:4326", f"EPSG:{epsg_code}", always_xy=True)
+    easting, northing = transformer.transform(lon, lat)
+
+    return easting, northing
+
+for idx, row in top_20_wf_df.iterrows():
+    lat = row["centroid_lat"]
+    lon = row["centroid_lng"]
+    easting, northing = latlon_to_utm(lat, lon)
+    top_20_wf_df.at[idx, "centroid_easting"] = easting
+    top_20_wf_df.at[idx, "centroid_northing"] = northing
