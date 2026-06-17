@@ -200,7 +200,7 @@ class bayesian_quadrature():
             return ws, wd
         
 
-    def _power_function(self, x, y, X):
+    def _power_function(self, x, y, X, n_cpu=1):
 
         """
         It returns the wind farm power for an array of points with different wind speed and direction conditions,
@@ -217,6 +217,8 @@ class bayesian_quadrature():
             points for which to compute the power function. The first column corresponds to wind speed, the second column
             corresponds to the cosine of the wind direction and the third column corresponds to the sine of the wind
             direction if kernel_type is "Periodic".
+        n_cpu : int, optional
+            Number of CPU cores to use for parallel evaluation (default is 1).
         """
 
         # Convert X to wind speed and direction
@@ -227,7 +229,8 @@ class bayesian_quadrature():
         sim_res = self.flow_model(x, y,
                                 wd=wd,
                                 ws=ws,
-                                time=time_stamp)
+                                time=time_stamp,
+                                n_cpu=n_cpu)
 
         power_vector = np.sum(np.array(sim_res.Power), axis=0)
 
@@ -541,7 +544,7 @@ class bayesian_quadrature():
         self.k_opt = self._kernel(self.optimized_points, self.optimized_points).detach().numpy()    
 
 
-    def aep(self, x, y):
+    def aep(self, x, y, n_cpu=1):
 
         """
         Compute the AEP using the optimized points for the surrogate model and the kernel function.
@@ -570,7 +573,7 @@ class bayesian_quadrature():
             k_ = self.k_opt
 
             # Obtain power vector for the optimized points
-            y_ = self._power_function(x, y, X)
+            y_ = self._power_function(x, y, X, n_cpu=n_cpu)
 
             # Perform bayesian quadrature to obtain AEP
             AEP = 8760/1e9 * w_.T @ np.linalg.inv(k_) @ y_
@@ -578,7 +581,7 @@ class bayesian_quadrature():
         elif self.aep_method == "RQ":
 
             # Obtain power vector for the Monte Carlo samples
-            power_vector = self._power_function(x, y, X)
+            power_vector = self._power_function(x, y, X, n_cpu=n_cpu)
             freqs = self._X_probabilities(X)
             frequency_normalized = freqs / np.sum(freqs)
 
@@ -588,7 +591,7 @@ class bayesian_quadrature():
         return AEP
     
 
-    def setup_gradients(self, gradient_method=autograd):
+    def setup_gradients(self, gradient_method=autograd, n_cpu=1):
 
         """
         Set up AEP gradients based on the optimized points and the method selected for AEP computation
@@ -642,7 +645,8 @@ class bayesian_quadrature():
                                                         y=y,
                                                         wd=wd,
                                                         ws=ws,
-                                                        time=True)
+                                                        time=True,
+                                                        n_cpu=n_cpu)
             
                 daep = np.array([np.atleast_2d(jx), np.atleast_2d(jy)])
                 daep_dx, daep_dy = daep
@@ -655,7 +659,7 @@ class bayesian_quadrature():
         return 
 
 
-    def aep_gradients(self, x=None, y=None):
+    def aep_gradient(self, x=None, y=None):
 
         """
         Compute the gradient of the AEP with respect to the turbine coordinates using automatic diffierentiation
@@ -681,9 +685,7 @@ class bayesian_quadrature():
             turbines.
         """
 
-        X = self.optimized_points
-
-        dy_dx, dy_dy = self.aep_gradients(x, y, X)
+        dy_dx, dy_dy = self.aep_gradients(x, y)
 
         return dy_dx, dy_dy
 

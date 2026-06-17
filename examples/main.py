@@ -4,20 +4,19 @@ from FAST_AEP.BQ import bayesian_quadrature
 from FAST_AEP.FLOWERS import NOJ_flowers, TurbOPark_flowers, gaussian_flowers
 from FAST_AEP.basic_wfm import WD_Bins, average_WS, uniform_CT
 
-from FAST_AEP.utils import get_wind_farm_data
+from py_wake.literature.noj import Jensen_1983
+from py_wake.utils.gradients import autograd
+
+from FAST_AEP.utils import get_wind_farm_data, generate_random_array, get_limits
 
 import time
 import matplotlib.pyplot as plt
 import numpy as np
 
-wind_farm = "Seagreen_Phase_1_Windfarm"
+wind_farm = "Dogger_Bank_C"
 
 site = generic_site(wind_farm)
 turbine = turbine_generator(wind_farm)
-
-evaluating_wfm = WD_Bins(site=site, windTurbines=turbine, deficit_model="NOJ", n_bins=360)
-
-wfm_flowers = NOJ_flowers(site=site, windTurbines=turbine, n_terms=10)
 
 wind_farm_data = get_wind_farm_data(wind_farm)
 
@@ -25,6 +24,38 @@ wind_farm_data = get_wind_farm_data(wind_farm)
 print(f"Wind Farm: {wind_farm}")
 print(f"Number of Turbines: {wind_farm_data['turbine_count'].values[0]}")
 print(f"Capacity: {wind_farm_data['capacity_mw'].values[0]} MW")
+
+def setup_BQ_wfm(deficit_model, aep_method):
+
+    if deficit_model == "NOJ":
+        wfm = Jensen_1983(site, turbine)
+
+    limits = get_limits(wind_farm)
+
+    x, y = generate_random_array(n_tur=wind_farm_data['turbine_count'].values[0], turbine=turbine, spacing=4, limits=limits)
+
+    BQ_wfm = bayesian_quadrature(site=site,
+                                 windTurbines=turbine,
+                                 flow_model=wfm,
+                                 x0=x,
+                                 y0=y,
+                                 N_train=3000,
+                                 N_MC = 4000,
+                                 aep_method=aep_method)
+    
+    BQ_wfm.train_and_get_kernel()
+    BQ_wfm.optimize_BQ_points(N_points=360, N_attempts=1)
+    BQ_wfm.setup_gradients(gradient_method=autograd, n_cpu=1)
+
+    return BQ_wfm
+
+# RQ_NOJ = setup_BQ_wfm("NOJ", "RQ")
+
+evaluating_wfm = WD_Bins(site=site, windTurbines=turbine, deficit_model="NOJ", n_bins=360)
+
+wfm_flowers = NOJ_flowers(site=site, windTurbines=turbine, n_terms=10)
+
+# wfm_flowers = RQ_NOJ
 
 ########################################################################################
 # First optimization - Not including distance constraints
