@@ -11,15 +11,15 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 
-
 class optifast:
 
-    def __init__(self, wind_farm, wind_farm_model, min_spacing=2, normalization=True, x_0=None, y_0=None):
+    def __init__(self, wind_farm, wind_farm_model, min_spacing=4, normalization=True, x_0=None, y_0=None, n_cpu=1):
 
         self.wind_farm = wind_farm
         self.wind_farm_model = wind_farm_model
         self.min_spacing = min_spacing
         self.normalization = normalization
+        self.n_cpu = n_cpu
 
         # Get wind farm data
         self.wf_data = get_wind_farm_data(wind_farm)
@@ -39,7 +39,7 @@ class optifast:
             self.x_0 = x_0
             self.y_0 = y_0
         
-        # Center coordinates if necessary
+        # Get minimum x and y to center coordinates if necessary
         self.min_x = self.wf_limits[:, 0].min()
         self.min_y = self.wf_limits[:, 1].min()
 
@@ -51,10 +51,8 @@ class optifast:
 
         # Center limits
         limits_centered = np.zeros_like(self.wf_limits)
-
         limits_centered[:, 0] = (self.wf_limits[:, 0] - self.min_x)
         limits_centered[:, 1] = (self.wf_limits[:, 1] - self.min_y)
-
         self.wf_limits = limits_centered
 
         # Obtain max x and y to normalize coordinates if necessary
@@ -62,16 +60,14 @@ class optifast:
         self.max_y = self.wf_limits[:, 1].max()
 
         if self.normalization:
-            time_i = time.time()
             self.aep_0 = self.wind_farm_model.aep(self.x_0, self.y_0)
-            time_f = time.time()
-            # print(f"Initial AEP calculated in {time_f - time_i:.4f} seconds")
 
         else:
             self.aep_0 = 1
 
 
     def _setup_normalization(self):
+        """Normalize coorindates with respect to maximum coordinates in the wind farm"""
 
         def normalize_coords(x_norm, y_norm):
 
@@ -89,6 +85,7 @@ class optifast:
             
             return [[dx_dxnorm, dy_dxnorm], [dx_dynorm, dy_dynorm]]
         
+        # The normalization is applied using the grid layout component, an intermediate component
         normalization_component = CostModelComponent(input_keys=[('x_norm', self.x_0_norm), ('y_norm', self.y_0_norm)],
                                                     n_wt=len(self.x_0),
                                                     cost_function=normalize_coords,
@@ -101,24 +98,38 @@ class optifast:
 
 
     def _setup_objective_function(self):
+        """Set up objective function, in this case AEP"""
 
         def aep_function(x, y):
-            aep = self.wind_farm_model.aep(x, y)
+            # Some wind farm models (e.g. Flowers) do not accept n_cpu; ignore it for those models
+            model_name = self.wind_farm_model.__class__.__name__.lower()
+            module_name = getattr(self.wind_farm_model.__class__, '__module__', '').lower()
+            if 'flowers' in model_name or 'flowers' in module_name:
+                aep = self.wind_farm_model.aep(x, y)
+            else:
+                aep = self.wind_farm_model.aep(x, y, n_cpu=self.n_cpu)
             return aep/self.aep_0
         
         return aep_function
     
 
     def _setup_gradient_function(self):
+        """Set up gradient function, in this case AEP gradient"""
 
         def aep_gradient(x, y):
-            grad_x, grad_y = self.wind_farm_model.aep_gradient(x, y)
+            model_name = self.wind_farm_model.__class__.__name__.lower()
+            module_name = getattr(self.wind_farm_model.__class__, '__module__', '').lower()
+            if 'flowers' in model_name or 'flowers' in module_name:
+                grad_x, grad_y = self.wind_farm_model.aep_gradient(x, y)
+            else:
+                grad_x, grad_y = self.wind_farm_model.aep_gradient(x, y, n_cpu=self.n_cpu)
             return grad_x/self.aep_0, grad_y/self.aep_0
         
         return aep_gradient
     
 
     def _setup_constraints(self):
+        """Set up constraints"""
 
         # Boundary constraints
         wf_limits_const = XYBoundaryConstraint(self.wf_limits, 'polygon')
@@ -131,10 +142,12 @@ class optifast:
             return [turbine_separation_constrain, wf_limits_const]
         
         else:
+            # For the double step optimization, the first optimization does not consider distance constraints
             return [wf_limits_const]
         
 
     def setup_problem(self, tolerance=1, expected_cost=1, max_iter=100):
+        """Set up the TopFarm optimization problem"""
 
         # Generate functions and constraints
         aep_function = self._setup_objective_function()
@@ -157,7 +170,6 @@ class optifast:
 
         # Normalize if necessary
         if self.normalization:
-
             self.x_0_norm = self.x_0 / self.max_x
             self.y_0_norm = self.y_0 / self.max_y
 
@@ -176,7 +188,6 @@ class optifast:
                                         grid_layout_comp = normalization_func,
                                         n_wt=self.n_turbines,
                                         expected_cost=expected_cost)
-                                        # plot_comp = XYPlotComp())
         
         return topfarm_problem
                                             

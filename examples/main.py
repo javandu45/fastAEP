@@ -55,13 +55,13 @@ evaluating_wfm = WD_Bins(site=site, windTurbines=turbine, deficit_model="NOJ", n
 
 wfm_flowers = NOJ_flowers(site=site, windTurbines=turbine, n_terms=10)
 
-# wfm_flowers = RQ_NOJ
+wfm_flowers = evaluating_wfm
 
 ########################################################################################
 # First optimization - Not including distance constraints
-optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=None)
+optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=None, n_cpu=8)
 
-tf_problem = optimization_problem.setup_problem(tolerance=1e-5, expected_cost=10, max_iter=100)
+tf_problem = optimization_problem.setup_problem(tolerance=1e-6, expected_cost=10, max_iter=100)
 
 print("\n" + "-" * 50)
 print("Starting optimization...")
@@ -105,7 +105,7 @@ convergence_1 = recorder.get("cost")
 
 ########################################################################################
 # Second optimization - Including distance constraints
-optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=4, x_0=x_opt, y_0=y_opt)
+optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=4, x_0=x_opt, y_0=y_opt, n_cpu=8)
 
 tf_problem = optimization_problem.setup_problem(tolerance=1e-3, expected_cost=10, max_iter=100)
 
@@ -144,9 +144,9 @@ convergence_2 = recorder.get("cost")
 
 ########################################################################################
 # Total optimization - Including distance constraints from the beginning
-optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=4)
+optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=4, n_cpu=8)
 
-tf_problem = optimization_problem.setup_problem(tolerance=1e-5, expected_cost=10, max_iter=100)
+tf_problem = optimization_problem.setup_problem(tolerance=1e-6, expected_cost=10, max_iter=100)
 
 print("\n")
 print("-" * 50)
@@ -211,6 +211,7 @@ axes[2].grid()
 fig.suptitle("AEP Optimization Convergence")
 plt.tight_layout()
 plt.show()
+plt.savefig("optimization_convergence.png", dpi=300)
 
 # # Plot the optimized layout
 # plt.figure(figsize=(10, 10))

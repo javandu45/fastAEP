@@ -21,6 +21,12 @@ SITE = generic_site("Dogger_Bank_C")
 TURBINES = V80()
 X0, Y0 = Hornsrev1Site().initial_position.T  # reference layout for GP training
 
+def _random_square_layout(n_tur: int, spacing: int):
+    side = int(np.sqrt(n_tur)) * spacing * TURBINES.diameter() * 1.5  # add some extra space to avoid edge effects
+    limits = np.array([(0, 0), (side, 0), (side, side), (0, side)])
+    return generate_random_array(n_tur=n_tur, turbine=TURBINES, spacing=spacing, limits=limits)
+
+X0, Y0 = _random_square_layout(200, spacing=4)  # 100 turbines with 4 rotor diameters spacing
 
 def _build_flow_model(deficit_model: str):
     if deficit_model == "NOJ":
@@ -66,7 +72,7 @@ def setup_all_models(n_train: int = 100) -> dict:
 
 # ── Experiment 1: time vs. number of CPUs ────────────────────────────────────
 
-def benchmark_cpu(models: dict, x, y, n_repeats: int = 10, cpu_counts=(1, 2, 3, 4, 5, 6)):
+def benchmark_cpu(models: dict, x, y, n_repeats: int = 10, cpu_counts=(1, 4, 8, 16)):
     results = {}
     for n_cpu in cpu_counts:
         row = {}
@@ -89,7 +95,7 @@ def benchmark_cpu(models: dict, x, y, n_repeats: int = 10, cpu_counts=(1, 2, 3, 
 def benchmark_n_turbines(
     models: dict,
     turbine_counts=(50, 100, 150, 200, 250, 300),
-    cpu_counts=(1, 2, 3, 4, 5, 6),
+    cpu_counts=(1, 4, 8, 16),
     n_repeats: int = 5,
     spacing: int = 4,
 ):
@@ -105,12 +111,6 @@ def benchmark_n_turbines(
                 results[(name, n_cpu)][n_tur] = np.mean(times)
 
     _plot_turbine_benchmark(results, turbine_counts, cpu_counts)
-
-
-def _random_square_layout(n_tur: int, spacing: int):
-    side = int(np.sqrt(n_tur)) * spacing * TURBINES.diameter()
-    limits = np.array([(0, 0), (side, 0), (side, side), (0, side)])
-    return generate_random_array(n_tur=n_tur, turbine=TURBINES, spacing=spacing, limits=limits)
 
 
 def _plot_turbine_benchmark(results: dict, turbine_counts, cpu_counts):
@@ -146,6 +146,7 @@ def _plot_turbine_benchmark(results: dict, turbine_counts, cpu_counts):
 
     fig.suptitle("AEP computation time vs. number of turbines", y=1.01)
     plt.tight_layout()
+    plt.savefig("aep_benchmark.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
@@ -165,5 +166,5 @@ if __name__ == "__main__":
     print("\n=== Experiment 1: time vs. CPUs ===")
     benchmark_cpu(models, X0, Y0)
 
-    print("\n=== Experiment 2: time vs. number of turbines ===")
-    benchmark_n_turbines(models)
+    # print("\n=== Experiment 2: time vs. number of turbines ===")
+    # benchmark_n_turbines(models)

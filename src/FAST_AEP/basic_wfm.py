@@ -18,16 +18,15 @@ class BasicWFM(ABC):
     Base class for PyWake based simplified wind farm models.
     """
 
-    def __init__(self, site, windTurbines, deficit_model, k=0.05, n_cpu=1):
+    def __init__(self, site, windTurbines, deficit_model, k=0.05):
 
-        self.n_cpu = n_cpu
         self.site = site
 
         if deficit_model == "NOJ":
             self.wfm = Jensen_1983(site, windTurbines, k=k)
         elif deficit_model == "Gaussian":
             self.wfm = Bastankhah_PorteAgel_2014(site, windTurbines, k=k)
-        elif deficit_model == "Turbopark":
+        elif deficit_model == "TurbOPark":
             deficit_model = TurboNOJDeficit()
             self.wfm = PropagateDownwind(site, windTurbines,
                                          wake_deficitModel=deficit_model,
@@ -38,13 +37,13 @@ class BasicWFM(ABC):
             raise ValueError(f"Deficit model {deficit_model} not supported. Choose from 'NOJ', 'Gaussian', or 'Turbopark'.")
         
     @abstractmethod
-    def aep(self, x, y):
+    def aep(self, x, y, n_cpu=1):
         """
         Calculate AEP for the given wind farm
         """
     
     @abstractmethod
-    def aep_gradient(self, gradient_method=autograd):
+    def aep_gradient(self, gradient_method=autograd,n_cpu=1):
         """
         Calculate AEP gradient for the given wind farm
         """
@@ -56,28 +55,28 @@ class WD_Bins(BasicWFM):
     Wind farm model using a determined number of wind direction bins.
     """
 
-    def __init__(self, site, windTurbines, deficit_model, k=0.05, n_cpu=1, n_bins=360):
+    def __init__(self, site, windTurbines, deficit_model, k=0.05, n_bins=360):
 
-        super().__init__(site, windTurbines, deficit_model, k=k, n_cpu=n_cpu)
+        super().__init__(site, windTurbines, deficit_model, k=k)
 
         self.n_bins = n_bins
 
 
-    def aep(self, x, y):
+    def aep(self, x, y, n_cpu=1):
 
         wd = np.linspace(0,360,self.n_bins, endpoint=False)
 
         sim_res = self.wfm(x, y,
                             wd=wd,
                             ws=self.site.default_ws,
-                            n_cpu=self.n_cpu)
+                            n_cpu=n_cpu)
 
         AEP = sim_res.aep().sum()
 
         return float(AEP)
 
 
-    def aep_gradient(self, x, y, gradient_method=autograd):
+    def aep_gradient(self, x, y, gradient_method=autograd, n_cpu=1):
 
         wd = np.linspace(0,360,self.n_bins, endpoint=False)
 
@@ -86,7 +85,7 @@ class WD_Bins(BasicWFM):
                                                y=y,
                                                ws=self.site.default_ws, 
                                                wd=wd,
-                                               n_cpu=self.n_cpu)
+                                               n_cpu=n_cpu)
                                                
         daep = np.array([np.atleast_2d(jx), np.atleast_2d(jy)])
 
@@ -99,16 +98,16 @@ class average_WS(BasicWFM):
     Wind farm model using an average wind speed for each wind direction bin
     """
 
-    def __init__(self, site, windTurbines, deficit_model, k=0.05, n_cpu=1):
+    def __init__(self, site, windTurbines, deficit_model, k=0.05):
 
-        super().__init__(site, windTurbines, deficit_model, k=k, n_cpu=n_cpu)
+        super().__init__(site, windTurbines, deficit_model, k=k)
 
         self.avg_ws = site.ds.Weibull_A.values[:-1] * gamma(1 + 1/site.ds.Weibull_k.values[:-1])
         self.freqs = site.ds.Sector_frequency.values[:-1]
         self.freqs = self.freqs / sum(self.freqs)
 
 
-    def aep(self, x, y):
+    def aep(self, x, y, n_cpu=1):
 
         time_stamp = np.arange(360)
 
@@ -118,7 +117,7 @@ class average_WS(BasicWFM):
                                 wd=wind_directions,
                                 ws=self.avg_ws,
                                 time=time_stamp,
-                                n_cpu=self.n_cpu)
+                                n_cpu=n_cpu)
 
         power_vector = np.sum(np.array(sim_res_avg_ws.Power), axis=0)
         AEP = np.sum(power_vector * self.freqs) * 1e-9 * 8760
@@ -126,7 +125,7 @@ class average_WS(BasicWFM):
         return float(AEP)
     
     
-    def aep_gradient(self, x, y, gradient_method=autograd):
+    def aep_gradient(self, x, y, gradient_method=autograd, n_cpu=1):
 
         wd = np.linspace(0,360,self.n_bins, endpoint=False)
 
@@ -152,9 +151,9 @@ class uniform_CT(average_WS):
     Same as average_WS, but changing flow model
     """
 
-    def __init__(self, site, windTurbines, deficit_model, k=0.05, n_cpu=1):
+    def __init__(self, site, windTurbines, deficit_model, k=0.05):
 
-        super().__init__(site, windTurbines, deficit_model, k=k, n_cpu=n_cpu)
+        super().__init__(site, windTurbines, deficit_model, k=k)
 
         if deficit_model == "NOJ":
             deficit_model = NOJDeficit(k=k)
