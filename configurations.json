@@ -1,177 +1,98 @@
 [
   {
-    "farm_id": "Hornsea_Project_3_HOW03",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Hornsea_Project_3_HOW03",
-    "aep_method": "FLOWERS",
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "360_WD",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Hornsea_Project_3_HOW03",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "East_Anglia_THREE",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "East_Anglia_THREE",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "East_Anglia_THREE",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Sofia",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Sofia",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Sofia",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Hornsea_Project_2_-_Phase_2_Soundmark",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Hornsea_Project_2_-_Phase_2_Soundmark",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Hornsea_Project_2_-_Phase_2_Soundmark",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Hornsea_Project_2_-_Phase_3_Sonningmay",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Hornsea_Project_2_-_Phase_3_Sonningmay",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Hornsea_Project_2_-_Phase_3_Sonningmay",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Norfolk_Vanguard_East",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Norfolk_Vanguard_East",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Norfolk_Vanguard_East",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Dogger_Bank_C",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Dogger_Bank_C",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Dogger_Bank_C",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
+    "n_cpu": 8,
+    "tol": 1e-05,
     "start_id": 0
   },
   {
     "farm_id": "Dogger_Bank_B",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-07,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-07,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-07,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-07,
     "start_id": 0
   },
   {
@@ -179,223 +100,71 @@
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
+    "tol": 1e-05,
     "start_id": 0
   },
   {
     "farm_id": "Dogger_Bank_B",
     "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
+    "wake_model": "Gaussian",
     "n_cpu": 1,
+    "tol": 1e-06,
     "start_id": 0
   },
   {
-    "farm_id": "Inch_Cape_Offshore_Wind_Farm",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Inch_Cape_Offshore_Wind_Farm",
+    "farm_id": "Dogger_Bank_B",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
+    "tol": 1e-07,
     "start_id": 0
   },
   {
-    "farm_id": "Inch_Cape_Offshore_Wind_Farm",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Thor",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Thor",
-    "aep_method": "FLOWERS",
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
+    "tol": 1e-05,
     "start_id": 0
   },
   {
-    "farm_id": "Thor",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Seagreen_Phase_1_Windfarm",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Seagreen_Phase_1_Windfarm",
-    "aep_method": "FLOWERS",
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
+    "tol": 1e-06,
     "start_id": 0
   },
   {
-    "farm_id": "Seagreen_Phase_1_Windfarm",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "East_Anglia_TWO",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "East_Anglia_TWO",
-    "aep_method": "FLOWERS",
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
+    "tol": 1e-07,
     "start_id": 0
   },
   {
-    "farm_id": "East_Anglia_TWO",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Moray_West",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Moray_West",
-    "aep_method": "FLOWERS",
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "RQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
+    "tol": 1e-05,
     "start_id": 0
   },
   {
-    "farm_id": "Moray_West",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Triton_Knoll",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Triton_Knoll",
-    "aep_method": "FLOWERS",
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "RQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
+    "tol": 1e-06,
     "start_id": 0
   },
   {
-    "farm_id": "Triton_Knoll",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "East_Anglia_ONE",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "East_Anglia_ONE",
-    "aep_method": "FLOWERS",
+    "farm_id": "Dogger_Bank_B",
+    "aep_method": "RQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "East_Anglia_ONE",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "London_Array",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "London_Array",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "London_Array",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Beatrice_Offshore_Wind_Farm",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Beatrice_Offshore_Wind_Farm",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Beatrice_Offshore_Wind_Farm",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Gwynt_y_Mor",
-    "aep_method": "FLOWERS",
-    "wake_model": "NOJ",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Gwynt_y_Mor",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Gwynt_y_Mor",
-    "aep_method": "FLOWERS",
-    "wake_model": "TurbOPark",
-    "n_cpu": 1,
+    "n_cpu": 8,
+    "tol": 1e-07,
     "start_id": 0
   }
 ]

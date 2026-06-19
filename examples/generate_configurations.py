@@ -7,28 +7,46 @@ base_dir = Path(__file__).resolve().parent.parent
 wf = pd.read_csv(base_dir / "data" / "top_20_windfarms.csv")
 
 farms = list(wf["name"])
-farms.remove("Kriegers_Flak_K2-K3") # Remove for now, since it is two different boundaries
+farms.remove("Kriegers_Flak_K2-K3")  # Remove for now, since it is two different boundaries
+farms.remove("Gwynt_y_Mor")
+farms = ["Dogger_Bank_B"]
 
 aep_methods = {
     "360_WD": 8, "72_WD": 8, "Average_WS": 8,
     "Uniform_CT": 8, "FLOWERS": 1, "BQ": 8,
-    "RQ": 8,                            
+    "RQ": 8,
 }
 
-aep_methods = {"FLOWERS": 1}
+wake_models = ["Gaussian"]
 
-wake_models = ["NOJ", "Gaussian", "TurbOPark"]
+# Tolerance for each (aep_method, wake_model) combination
+tolerances = {
+    ("360_WD",     "Gaussian"): (1e-5, 1e-6, 1e-7),
+    ("72_WD",      "Gaussian"): (1e-5, 1e-6, 1e-7),
+    ("Average_WS", "Gaussian"): (1e-5, 1e-6, 1e-7),
+    ("Uniform_CT", "Gaussian"): (1e-5, 1e-6, 1e-7),
+    ("FLOWERS",    "Gaussian"): (1e-5, 1e-6, 1e-7),
+    ("BQ",         "Gaussian"): (1e-5, 1e-6, 1e-7),
+    ("RQ",         "Gaussian"): (1e-5, 1e-6, 1e-7),
+}
 
 tasks = []
 for farm, (method, n_cpu), wake in itertools.product(
         farms, aep_methods.items(), wake_models):
-    tasks.append({
-        "farm_id": farm,
-        "aep_method": method,
-        "wake_model": wake,
-        "n_cpu": n_cpu,
-        "start_id": 0,
-    })
+
+    key = (method, wake)
+    if key not in tolerances:
+        raise KeyError(f"No tolerance defined for combination {key}")
+
+    for tol in tolerances[key]:
+        tasks.append({
+            "farm_id":    farm,
+            "aep_method": method,
+            "wake_model": wake,
+            "n_cpu":      n_cpu,
+            "tol":        tol,
+            "start_id":   0,
+        })
 
 with open("configurations.json", "w") as f:
     json.dump(tasks, f, indent=2)

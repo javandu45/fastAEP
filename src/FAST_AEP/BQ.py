@@ -620,7 +620,7 @@ class bayesian_quadrature():
                 power_i = self.flow_model(x=x, y=y, ws=ws, wd=wd, return_simulationResult=False, time=True)[2]
                 power_wf = anp.sum(power_i, 0)   # shape: (len(wd),)
 
-                return anp.dot(c_const, power_wf) 
+                return anp.dot(c_const, power_wf)
 
             grad_fun = gradient_method(wf_power, vector_interdependence=True, argnum=[0,1])
 
@@ -632,7 +632,7 @@ class bayesian_quadrature():
                 return daep_dx, daep_dy
             
             # Save the gradient function as an attribute of the class for later use in optimization
-            self.aep_gradients = _aep_gradient
+            self.aep_gradients_function = _aep_gradient
 
         elif self.aep_method == "RQ":
 
@@ -654,12 +654,13 @@ class bayesian_quadrature():
                 return daep_dx, daep_dy
 
             # Save the gradient function as an attribute of the class for later use in optimization
-            self.aep_gradients = _aep_gradient
+            self.aep_gradients_function = _aep_gradient
 
         return 
 
 
-    def aep_gradient(self, x=None, y=None):
+    def aep_gradient(self, x=None, y=None, n_cpu=1):
+        # n_cpu is not used, its only to match optimization code
 
         """
         Compute the gradient of the AEP with respect to the turbine coordinates using automatic diffierentiation
@@ -685,7 +686,7 @@ class bayesian_quadrature():
             turbines.
         """
 
-        dy_dx, dy_dy = self.aep_gradients(x, y)
+        dy_dx, dy_dy = self.aep_gradients_function(x, y)
 
         return dy_dx, dy_dy
 

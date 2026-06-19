@@ -5,7 +5,8 @@ from shapely.geometry import Point, Polygon
 from scipy.special import gamma
 import json
 import re
-import path
+from pathlib import Path
+import h5py
 
 from py_wake.wind_turbines.generic_wind_turbines import GenericWindTurbine
 from py_wake.site import UniformWeibullSite
@@ -15,6 +16,7 @@ from py_wake.superposition_models import SquaredSum
 from py_wake.wind_farm_models import PropagateDownwind
 from py_wake.deficit_models import TurboNOJDeficit
 from py_wake.rotor_avg_models.area_overlap_model import AreaOverlapAvgModel
+from py_wake.utils.gradients import autograd
 
 import FAST_AEP.basic_wfm as basic_wfm
 import FAST_AEP.FLOWERS as FLOWERS
@@ -186,7 +188,7 @@ def build_wfm(site, windTurbines, deficit_model = "NOJ", k = 0.05):
     return wfm
 
 
-def build_aep_model(aep_method, wind_farm, deficit_model, k = 0.05):
+def build_aep_model(aep_method, wind_farm, deficit_model, k = 0.05, n_cpu=1):
     """Builds an AEP model based on the selected AEP method and deficit model"""
 
     site = generic_site(wind_farm)
@@ -197,18 +199,18 @@ def build_aep_model(aep_method, wind_farm, deficit_model, k = 0.05):
     limits = get_limits(wind_farm)
 
     if aep_method == "360_WD":
-        aep_model = basic_wfm.WD_Bins(site=site, windTurbines=windTurbines, deficit_model=deficit_model, n_bins=360)
+        aep_model = basic_wfm.WD_Bins(site=site, windTurbines=windTurbines, deficit_model=deficit_model, n_bins=360, k=k)
     elif aep_method == "72_WD":
-        aep_model = basic_wfm.WD_Bins(site=site, windTurbines=windTurbines, deficit_model=deficit_model, n_bins=72)
+        aep_model = basic_wfm.WD_Bins(site=site, windTurbines=windTurbines, deficit_model=deficit_model, n_bins=72, k=k)
     elif aep_method == "Average_WS":
-        aep_model = basic_wfm.average_WS(site=site, windTurbines=windTurbines, deficit_model=deficit_model)
+        aep_model = basic_wfm.average_WS(site=site, windTurbines=windTurbines, deficit_model=deficit_model, k=k)
     elif aep_method == "Uniform_CT":
-        aep_model = basic_wfm.uniform_CT(site=site, windTurbines=windTurbines, deficit_model=deficit_model)
+        aep_model = basic_wfm.uniform_CT(site=site, windTurbines=windTurbines, deficit_model=deficit_model, k=k)
     elif aep_method == "FLOWERS":
         if deficit_model == "NOJ":
-            aep_model = FLOWERS.NOJ_flowers(site=site, windTurbines=windTurbines, n_terms=10)
+            aep_model = FLOWERS.NOJ_flowers(site=site, windTurbines=windTurbines, n_terms=10, k=k)
         elif deficit_model == "Gaussian":
-            aep_model = FLOWERS.gaussian_flowers(site=site, windTurbines=windTurbines, n_terms=10)
+            aep_model = FLOWERS.gaussian_flowers(site=site, windTurbines=windTurbines, n_terms=10, k=k)
         elif deficit_model == "TurbOPark":
             aep_model = FLOWERS.TurbOPark_flowers(site=site, windTurbines=windTurbines, n_terms=10)
     elif aep_method == "BQ":
@@ -216,53 +218,54 @@ def build_aep_model(aep_method, wind_farm, deficit_model, k = 0.05):
         aep_model = bayesian_quadrature(site=site,
                                        windTurbines=windTurbines,
                                        flow_model=wfm,
-                                       x0=None,
-                                       y0=None,
+                                       x0=x,
+                                       y0=y,
                                        N_train=3000,
                                        N_MC = 4000,
                                        aep_method=aep_method)
-        aep.train_and_get_kernel()
-        aep.optimize_BQ_points(N_points=360, N_attempts=5)
+        aep_model.train_and_get_kernel()
+        aep_model.optimize_BQ_points(N_points=360, N_attempts=5)
+        aep_model.setup_gradients(gradient_method=autograd, n_cpu=n_cpu)
     elif aep_method == "RQ":
         x, y = generate_random_array(n_tur=n_turbines, turbine=windTurbines, spacing=2, limits=limits, seed=55)
         aep_model = bayesian_quadrature(site=site,
                                        windTurbines=windTurbines,
                                        flow_model=wfm,
-                                       x0=None,
-                                       y0=None,
+                                       x0=x,
+                                       y0=y,
                                        N_train=3000,
                                        N_MC = 4000,
                                        aep_method=aep_method)
-        aep.train_and_get_kernel()
-        aep.optimize_BQ_points(N_points=360, N_attempts=5)
-
+        aep_model.train_and_get_kernel()
+        aep_model.optimize_BQ_points(N_points=360, N_attempts=5)
+        aep_model.setup_gradients(gradient_method=autograd, n_cpu=n_cpu)
     return aep_model
 
 
 def save_results_in_H5(farm_id, aep_method, wake_model, start_id, res):
 
-    out_path = Path("results") / f"windfarm_{farm_id}.h5"
+    out_path = Path("results") / "optimization" / f"windfarm_{farm_id}.h5"
     out_path.parent.mkdir(exist_ok=True)
 
     # The key is just a path-like string inside the HDF5 file
     group_key = f"{aep_method}/{wake_model}/start_{start_id}"
 
-    with h5py.File(out_path, "a") as f:   # "a" = create if missing, append otherwise
-        # Abort cleanly if this run is already saved (e.g. job was requeued)
+    print(f"Saving results to {out_path} under group {group_key}...")
+
+    with h5py.File(out_path, "a") as f:
+
         if group_key in f:
-            print(f"  Already saved, skipping: {group_key}")
-            return
+            del f[group_key]
 
         grp = f.create_group(group_key)
 
         # Datasets: arrays and scalars
-        n = len(res.x) // 2
-        grp.create_dataset("x_opt",     data=res.x[:n])   # turbine x coords
-        grp.create_dataset("y_opt",     data=res.x[n:])   # turbine y coords
-        grp.create_dataset("aep_final", data=-res.fun)     # negated if you minimised -AEP
+        grp.create_dataset("x_opt", data = res["x_opt"]) 
+        grp.create_dataset("y_opt", data=res["y_opt"])
+        grp.create_dataset("convergence", data=res["convergence"])
 
         # Attributes: small scalars and strings (not arrays)
-        grp.attrs["time"]   = runtime_s
-        grp.attrs["n_iter"]      = res.nit
-        grp.attrs["aep_method"]  = aep_method
-        grp.attrs["wake_model"]  = wake_model
+        grp.attrs["aep_final"] = res["aep_final"]
+        grp.attrs["time"] = res["time"]
+        grp.attrs["n_iter"] = res["n_iter"]
+        grp.attrs["success"] = res["success"]

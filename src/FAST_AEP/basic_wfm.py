@@ -127,7 +127,7 @@ class average_WS(BasicWFM):
     
     def aep_gradient(self, x, y, gradient_method=autograd, n_cpu=1):
 
-        wd = np.linspace(0,360,self.n_bins, endpoint=False)
+        wd = np.linspace(0,360,360, endpoint=False)
 
         jx, jy = self.wfm.aep_gradients(gradient_method=gradient_method,
                                         wrt_arg=['x', 'y'],
@@ -136,7 +136,7 @@ class average_WS(BasicWFM):
                                         ws=self.avg_ws, 
                                         wd=wd,
                                         time=True,
-                                        n_cpu=self.n_cpu)
+                                        n_cpu=n_cpu)
                                                
         daep = np.array([np.atleast_2d(jx), np.atleast_2d(jy)])
 

@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore")
 
 class optifast:
 
-    def __init__(self, wind_farm, wind_farm_model, min_spacing=4, normalization=True, x_0=None, y_0=None, n_cpu=1):
+    def __init__(self, wind_farm, wind_farm_model, min_spacing=2, normalization=True, x_0=None, y_0=None, n_cpu=1):
 
         self.wind_farm = wind_farm
         self.wind_farm_model = wind_farm_model
@@ -34,7 +34,7 @@ class optifast:
                                                 turbine=self.windTurbines,
                                                 spacing=2 if self.min_spacing is None else self.min_spacing,
                                                 limits=self.wf_limits,
-                                                seed=2)
+                                                seed=10)
         else:
             self.x_0 = x_0
             self.y_0 = y_0
@@ -190,5 +190,5 @@ class optifast:
                                         expected_cost=expected_cost)
         
         return topfarm_problem
-                                            
-    
+
+        
