@@ -13,7 +13,7 @@ import time
 import matplotlib.pyplot as plt
 import numpy as np
 
-wind_farm = "Dogger_Bank_B"
+wind_farm = "Hornsea_Project_3_HOW03"
 
 site = generic_site(wind_farm)
 turbine = turbine_generator(wind_farm)
@@ -61,9 +61,9 @@ def setup_BQ_wfm(deficit_model, aep_method):
 
 evaluating_wfm = WD_Bins(site=site, windTurbines=turbine, deficit_model="TurbOPark", n_bins=360)
 
-wfm_flowers = TurbOPark_flowers(site=site, windTurbines=turbine, n_terms=10)
+wfm_flowers = gaussian_flowers(site=site, windTurbines=turbine, n_terms=10)
 
-# wfm_flowers = WD_Bins(site=site, windTurbines=turbine, deficit_model="Gaussian", n_bins=360)
+wfm_flowers = WD_Bins(site=site, windTurbines=turbine, deficit_model="TurbOPark", n_bins=360)
 
 # wfm_flowers = setup_BQ_wfm("NOJ", "BQ")
 
@@ -156,7 +156,7 @@ wfm_flowers = TurbOPark_flowers(site=site, windTurbines=turbine, n_terms=10)
 # Total optimization - Including distance constraints from the beginning
 optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=None, n_cpu=8)
 
-tf_problem = optimization_problem.setup_problem(tolerance=1e-5, expected_cost=1, max_iter=100)
+tf_problem = optimization_problem.setup_problem(tolerance=1e-7, expected_cost=10, max_iter=200)
 
 print("\n")
 print("-" * 50)

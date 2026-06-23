@@ -37,10 +37,27 @@ evaluating_wfm = build_aep_model(aep_method="360_WD", wind_farm=farm_id, deficit
 
 ########################################################################################
 # Set up optimization
-optimization_problem = optifast(wind_farm=farm_id, wind_farm_model=wfm, min_spacing=None, n_cpu=n_cpu)
+# Excpected costs
+if wake_model == "NOJ":
+    expected_cost = 10
+elif wake_model == "Gaussian":
+    expected_cost = 1
+    if aep_method == "FLOWERS":
+        expected_cost = 1e-3
+elif wake_model == "TurbOPark":
+    expected_cost = 10
 
-tf_problem = optimization_problem.setup_problem(tolerance=tol, expected_cost=1, max_iter=200)
+# Maximum number of iterations
+max_iter = 150
+if (aep_method == "RQ" or aep_method == "BQ") and wake_model == "Gaussian":
+    max_iter = 100
 
+# Set up optimization problem
+optimization_problem = optifast(wind_farm=farm_id, wind_farm_model=wfm, min_spacing=None, n_cpu=n_cpu, seed=start_id)
+
+tf_problem = optimization_problem.setup_problem(tolerance=tol, expected_cost=expected_cost, max_iter=max_iter)
+
+print("Running optimization...")
 time_start = time.time()
 _, state, recorder = tf_problem.optimize()
 time_end = time.time()
@@ -76,6 +93,6 @@ print(f"Optimized AEP: {final_aep:.2f} GWh")
 save_results_in_H5(farm_id=farm_id,
                    aep_method=aep_method,
                    wake_model=wake_model,
-                   start_id=int(-np.log10(tol)),  # Use log10 of tolerance for better readability in file structure
+                   start_id=start_id,
                    res=res)
 

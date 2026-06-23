@@ -3,7 +3,7 @@ import pandas as pd
 from pathlib import Path
 import numpy as np
 
-wake_models = ["Gaussian"]
+wake_models = ["TurbOPark"]
 wf_data = pd.read_csv("data/top_20_windfarms.csv", index_col=0)
 wind_farms = wf_data['name'].tolist()
 wind_farms = ["Dogger_Bank_B"]
