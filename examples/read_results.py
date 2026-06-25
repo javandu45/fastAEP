@@ -4,7 +4,7 @@ import numpy as np
 from pathlib import Path
 import matplotlib.pyplot as plt
 
-wake_models = ["Gaussian"]
+wake_models = ["TurbOPark"]
 wf_data = pd.read_csv("data/top_20_windfarms.csv", index_col=0)
 wind_farms = wf_data['name'].tolist()
 wind_farms.remove("Kriegers_Flak_K2-K3")  # Remove for now, since it is two different boundaries
@@ -22,7 +22,10 @@ normalize_results = False
 print_table = False
 
 # Print median
-median = False
+median = True
+
+# Plot summary plot of results for all farms and methods
+plot_summary = False
 
 n_starts = 5
 
@@ -103,8 +106,6 @@ for wake_model in wake_models:
     runtime_table = runtime_table.loc[farm_order]
     iteration_table = iteration_table.loc[farm_order]
 
-
-
     if print_table:
 
         if normalize_results:
@@ -163,6 +164,40 @@ for wake_model in wake_models:
 
         print("\n--- Median Iteration ---")
         print(median_iteration_table.to_string())
+
+    if plot_summary:
+        median_df = pd.DataFrame(median_records)
+
+        median_aep_table     = median_df.pivot(index="farm_id", columns="aep_method", values="aep")
+        median_runtime_table = median_df.pivot(index="farm_id", columns="aep_method", values="runtime")
+        median_iteration_table = median_df.pivot(index="farm_id", columns="aep_method", values="iteration")
+
+        # Keep wind farm row order consistent with the CSV
+        median_aep_table     = median_aep_table.loc[farm_order]
+        median_runtime_table = median_runtime_table.loc[farm_order]
+        median_iteration_table = median_iteration_table.loc[farm_order]
+
+        # Normalize AEP with respect to the AEP_max - AEP_min achieved for each farm/wake combo
+        median_aep_table = median_aep_table.sub(median_aep_table.min(axis=1), axis=0).div(median_aep_table.max(axis=1).sub(median_aep_table.min(axis=1)), axis=0)
+
+        # Normalize runtime with respect to the lowest runtime (for better readability in tables)
+        median_runtime_table = median_runtime_table.div(median_runtime_table.min(axis=1), axis=0)
+
+        aep_summary_NOJ = median_aep_table.mean(axis=0)
+        time_summary_NOJ = median_runtime_table.mean(axis=0)
+
+        plt.figure(figsize=(10, 6))
+        for aep_method in aep_summary_NOJ.index:
+            plt.scatter(time_summary_NOJ[aep_method], aep_summary_NOJ[aep_method], s=100, label=aep_method)
+        plt.xlabel("Normalized Runtime (mean across farms)")
+        plt.ylabel("Normalized AEP (mean across farms)")
+        plt.legend()
+        plt.title(f"Summary of AEP and Runtime for Wake Model: {wake_model}")
+        plt.grid()
+        plt.tight_layout()
+        plt.savefig(f"summary_Optimization_{wake_model}.png", dpi=300)
+
+
 
 # ########################################################################################
 # plot convergence plot for 360_WD for Hornsea_Project_3_HOW03

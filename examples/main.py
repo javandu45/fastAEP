@@ -5,6 +5,7 @@ from FAST_AEP.FLOWERS import NOJ_flowers, TurbOPark_flowers, gaussian_flowers
 from FAST_AEP.basic_wfm import WD_Bins, average_WS, uniform_CT
 
 from py_wake.literature.noj import Jensen_1983
+from py_wake.literature.gaussian_models import Bastankhah_PorteAgel_2014
 from py_wake.utils.gradients import autograd
 
 from FAST_AEP.utils import get_wind_farm_data, generate_random_array, get_limits
@@ -13,7 +14,7 @@ import time
 import matplotlib.pyplot as plt
 import numpy as np
 
-wind_farm = "Hornsea_Project_3_HOW03"
+wind_farm = "Sofia"
 
 site = generic_site(wind_farm)
 turbine = turbine_generator(wind_farm)
@@ -52,8 +53,11 @@ def setup_BQ_wfm(deficit_model, aep_method):
                                  aep_method=aep_method)
     
     BQ_wfm.train_and_get_kernel()
-    BQ_wfm.optimize_BQ_points(N_points=360, N_attempts=5)
+    BQ_wfm.optimize_BQ_points(N_points=360, N_attempts=5, jitter=0.1)
     BQ_wfm.setup_gradients(gradient_method=autograd, n_cpu=8)
+
+    BQ_wfm.plot_optimized_points()
+    plt.savefig("BQ_points.png", dpi=300)
 
     return BQ_wfm
 
@@ -61,11 +65,11 @@ def setup_BQ_wfm(deficit_model, aep_method):
 
 evaluating_wfm = WD_Bins(site=site, windTurbines=turbine, deficit_model="TurbOPark", n_bins=360)
 
-wfm_flowers = gaussian_flowers(site=site, windTurbines=turbine, n_terms=10)
+wfm_flowers = TurbOPark_flowers(site=site, windTurbines=turbine, n_terms=10)
 
-wfm_flowers = WD_Bins(site=site, windTurbines=turbine, deficit_model="TurbOPark", n_bins=360)
+# wfm_flowers = WD_Bins(site=site, windTurbines=turbine, deficit_model="TurbOPark", n_bins=360)
 
-# wfm_flowers = setup_BQ_wfm("NOJ", "BQ")
+# wfm_flowers = setup_BQ_wfm("Gaussian", "BQ")
 
 # ########################################################################################
 # First optimization - Not including distance constraints
@@ -154,9 +158,9 @@ wfm_flowers = WD_Bins(site=site, windTurbines=turbine, deficit_model="TurbOPark"
 
 ########################################################################################
 # Total optimization - Including distance constraints from the beginning
-optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=None, n_cpu=8)
+optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=3, n_cpu=8)
 
-tf_problem = optimization_problem.setup_problem(tolerance=1e-7, expected_cost=10, max_iter=200)
+tf_problem = optimization_problem.setup_problem(tolerance=1e-6, expected_cost=10, max_iter=100)
 
 print("\n")
 print("-" * 50)
@@ -223,15 +227,16 @@ plt.tight_layout()
 plt.show()
 plt.savefig("optimization_convergence.png", dpi=300)
 
-# # Plot the optimized layout
-# plt.figure(figsize=(10, 10))
-# plt.scatter(x_opt, y_opt, c='blue', label='Optimized Turbine Positions')
-# plt.plot(limits[:, 0], limits[:, 1], 'k-', label='Wind Farm Boundary')
-# plt.title(f"Optimized Wind Farm Layout for {wind_farm}")
-# plt.xlabel("X Position (m)")
-# plt.ylabel("Y Position (m)")
-# plt.axis('equal')
-# plt.legend()
-# plt.grid()
-# plt.show()
+# Plot the optimized layout
+plt.figure(figsize=(10, 10))
+plt.scatter(x_opt, y_opt, c='blue', label='Optimized Turbine Positions')
+plt.plot(limits[:, 0], limits[:, 1], 'k-', label='Wind Farm Boundary')
+plt.title(f"Optimized Wind Farm Layout for {wind_farm}")
+plt.xlabel("X Position (m)")
+plt.ylabel("Y Position (m)")
+plt.axis('equal')
+plt.legend()
+plt.grid()
+plt.savefig("optimized_layout.png", dpi=300)
+plt.show()
 

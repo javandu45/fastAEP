@@ -43,7 +43,7 @@ class BasicWFM(ABC):
         """
     
     @abstractmethod
-    def aep_gradient(self, gradient_method=autograd,n_cpu=1):
+    def aep_gradient(self, gradient_method=autograd, n_cpu=1):
         """
         Calculate AEP gradient for the given wind farm
         """

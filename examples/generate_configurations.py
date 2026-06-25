@@ -10,19 +10,17 @@ farms = list(wf["name"])
 farms.remove("Kriegers_Flak_K2-K3")  # Remove for now, since it is two different boundaries
 farms.remove("Gwynt_y_Mor")
 
-# For now, only 10 wind farms
-farms = farms[:10]
+farms = ["Hornsea_Project_3_HOW03", "Thor","Hornsea_Project_2_-_Phase_1_Breesea", "Sofia"]
 
 aep_methods = {
     "FLOWERS": 1, "72_WD": 8, "Average_WS": 8,
     "Uniform_CT": 8, "BQ": 8, "360_WD": 8,
     "RQ": 8,
 }
-aep_methods = {"FLOWERS": 1}
 
-wake_models = ["Gaussian"]
+wake_models = ["NOJ"]
 
-n_multistarts = 5
+n_multistarts = 30
 
 # Tolerance for each (aep_method, wake_model) combination
 tolerances = {
@@ -37,7 +35,7 @@ tolerances = {
     ("72_WD",      "Gaussian"): 1e-5,
     ("Average_WS", "Gaussian"): 1e-5,
     ("Uniform_CT", "Gaussian"): 1e-5,
-    ("FLOWERS",    "Gaussian"): 1e-7,
+    ("FLOWERS",    "Gaussian"): 1e-6,
     ("BQ",         "Gaussian"): 1e-6,
     ("RQ",         "Gaussian"): 1e-6,
     ("360_WD",     "TurbOPark"): 1e-6,

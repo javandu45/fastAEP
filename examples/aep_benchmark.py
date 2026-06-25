@@ -8,7 +8,7 @@ warnings.filterwarnings("ignore")
 aep_methods = ["360_WD", "72_WD", "Average_WS", "FLOWERS", "RQ", "BQ", "Uniform_CT"]
 wake_models = ["NOJ", "Gaussian", "TurbOPark"]
 
-turbine_ranges = [25, 50, 75, 100, 150, 175, 200, 250, 300]
+turbine_ranges = [25, 50, 75, 100, 150, 200, 250, 300]
 
 site = generic_site("Sofia")
 turbine = turbine_generator("Sofia")
@@ -113,21 +113,26 @@ for aep_method in aep_methods:
     wfm = build_aep_model(aep_method=aep_method, deficit_model="Gaussian", n_turbines=100)
 
     for n_turbines in turbine_ranges:
+        aeps_runs = []
+        times_runs = []
 
+        for run in range(5):
+            x, y = generate_array(n_tur=n_turbines, turbine=turbine, spacing=5)
 
-        x, y = generate_array(n_tur=n_turbines, turbine=turbine, spacing=5)
+            if aep_method == "FLOWERS":
+                time_start = time.time()
+                aep = wfm.aep(x, y)
+                time_end = time.time()
+            else:
+                time_start = time.time()
+                aep = wfm.aep(x, y, n_cpu=8)
+                time_end = time.time()
 
-        if aep_method == "FLOWERS":
-            time_start = time.time()
-            aep = wfm.aep(x, y)
-            time_end = time.time()
-        else:
-            time_start = time.time()
-            aep = wfm.aep(x, y, n_cpu=8)
-            time_end = time.time()
+            aeps_runs.append(aep)
+            times_runs.append(time_end - time_start)
 
-        aeps_gaussian[aep_method].append(aep)
-        times_gaussian[aep_method].append(time_end - time_start)
+        aeps_gaussian[aep_method].append(sum(aeps_runs) / len(aeps_runs))
+        times_gaussian[aep_method].append(sum(times_runs) / len(times_runs))
 
     
 # ########################################################################################
@@ -145,22 +150,26 @@ for aep_method in aep_methods:
     wfm = build_aep_model(aep_method=aep_method, deficit_model="TurbOPark", n_turbines=100)
 
     for n_turbines in turbine_ranges:
+        aeps_runs = []
+        times_runs = []
 
+        for run in range(5):
+            x, y = generate_array(n_tur=n_turbines, turbine=turbine, spacing=5)
 
-        x, y = generate_array(n_tur=n_turbines, turbine=turbine, spacing=5)
+            if aep_method == "FLOWERS":
+                time_start = time.time()
+                aep = wfm.aep(x, y)
+                time_end = time.time()
+            else:
+                time_start = time.time()
+                aep = wfm.aep(x, y, n_cpu=8)
+                time_end = time.time()
 
-        if aep_method == "FLOWERS":
-            time_start = time.time()
-            aep = wfm.aep(x, y)
-            time_end = time.time()
-        else:
-            time_start = time.time()
-            aep = wfm.aep(x, y, n_cpu=8)
-            time_end = time.time()
+            aeps_runs.append(aep)
+            times_runs.append(time_end - time_start)
 
-        aeps_turbopark[aep_method].append(aep)
-        times_turbopark[aep_method].append(time_end - time_start)
-
+        aeps_turbopark[aep_method].append(sum(aeps_runs) / len(aeps_runs))
+        times_turbopark[aep_method].append(sum(times_runs) / len(times_runs))
 
 # Save_results in csv files
 import pandas as pd

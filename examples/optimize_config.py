@@ -28,6 +28,7 @@ print("Optimizing configuration:")
 print(f"Farm: {farm_id}")
 print(f"AEP method: {aep_method}")
 print(f"Wake model: {wake_model}")
+print(f"Start ID: {start_id}")
 
 # Set up wind farm model
 wfm = build_aep_model(aep_method=aep_method, wind_farm=farm_id, deficit_model=wake_model, n_cpu=n_cpu)
@@ -43,7 +44,7 @@ if wake_model == "NOJ":
 elif wake_model == "Gaussian":
     expected_cost = 1
     if aep_method == "FLOWERS":
-        expected_cost = 1e-3
+        expected_cost = 1e-4
 elif wake_model == "TurbOPark":
     expected_cost = 10
 
@@ -51,6 +52,11 @@ elif wake_model == "TurbOPark":
 max_iter = 150
 if (aep_method == "RQ" or aep_method == "BQ") and wake_model == "Gaussian":
     max_iter = 100
+
+# Distancing constraints
+min_spacing = None  # Default is no distancing constraints
+if farm_id in ["Hornsea_Project_2_-_Phase_1_Breesea", "Sofia"]:
+    min_spacing = 3
 
 # Set up optimization problem
 optimization_problem = optifast(wind_farm=farm_id, wind_farm_model=wfm, min_spacing=None, n_cpu=n_cpu, seed=start_id)

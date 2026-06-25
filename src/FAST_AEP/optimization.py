@@ -28,6 +28,12 @@ class optifast:
         
         self.windTurbines = turbine_generator(wind_farm)
 
+        # Set boundary type
+        if wind_farm in ["Hornsea_Project_3_HOW03", "Sofia"]:
+            self.boundary_type = "convex_hull"
+        else:
+            self.boundary_type = "polygon"
+
         # Generate initial positions
         if x_0 is None and y_0 is None:
             self.x_0, self.y_0 = generate_random_array(n_tur=self.n_turbines,
@@ -132,7 +138,7 @@ class optifast:
         """Set up constraints"""
 
         # Boundary constraints
-        wf_limits_const = XYBoundaryConstraint(self.wf_limits, 'polygon')
+        wf_limits_const = XYBoundaryConstraint(self.wf_limits, self.boundary_type)
 
         # Distance constraints
         if self.min_spacing is not None:
