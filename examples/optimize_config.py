@@ -52,14 +52,21 @@ elif wake_model == "TurbOPark":
 max_iter = 150
 if (aep_method == "RQ" or aep_method == "BQ") and wake_model == "Gaussian":
     max_iter = 100
+elif aep_method == "SGD":
+    max_iter = 2000
 
 # Distancing constraints
 min_spacing = None  # Default is no distancing constraints
 if farm_id in ["Hornsea_Project_2_-_Phase_1_Breesea", "Sofia"]:
     min_spacing = 3
 
+# Normalization
+normalization = True
+if aep_method == "SGD":
+    normalization = False
+
 # Set up optimization problem
-optimization_problem = optifast(wind_farm=farm_id, wind_farm_model=wfm, min_spacing=None, n_cpu=n_cpu, seed=start_id)
+optimization_problem = optifast(wind_farm=farm_id, wind_farm_model=wfm, min_spacing=min_spacing, n_cpu=n_cpu, seed=start_id, normalization=normalization)
 
 tf_problem = optimization_problem.setup_problem(tolerance=tol, expected_cost=expected_cost, max_iter=max_iter)
 

@@ -21,6 +21,7 @@ from py_wake.utils.gradients import autograd
 import FAST_AEP.basic_wfm as basic_wfm
 import FAST_AEP.FLOWERS as FLOWERS
 from FAST_AEP.BQ import bayesian_quadrature
+from FAST_AEP.SGD import SGD
 
 
 def generic_site(wind_farm):
@@ -239,6 +240,8 @@ def build_aep_model(aep_method, wind_farm, deficit_model, k = 0.05, n_cpu=1):
         aep_model.train_and_get_kernel()
         aep_model.optimize_BQ_points(N_points=360, N_attempts=10, jitter=0.1)
         aep_model.setup_gradients(gradient_method=autograd, n_cpu=n_cpu)
+    elif aep_method == "SGD":
+        aep_model = SGD(site=site, windTurbines=windTurbines, deficit_model=deficit_model, k=k, n_samples=50)
     return aep_model
 
 

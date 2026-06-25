@@ -15,12 +15,12 @@ farms = ["Hornsea_Project_3_HOW03", "Thor","Hornsea_Project_2_-_Phase_1_Breesea"
 aep_methods = {
     "FLOWERS": 1, "72_WD": 8, "Average_WS": 8,
     "Uniform_CT": 8, "BQ": 8, "360_WD": 8,
-    "RQ": 8,
+    "RQ": 8, "SGD": 4
 }
 
-wake_models = ["NOJ"]
+wake_models = ["TurbOPark"]
 
-n_multistarts = 30
+n_multistarts = 10
 
 # Tolerance for each (aep_method, wake_model) combination
 tolerances = {
@@ -31,6 +31,7 @@ tolerances = {
     ("FLOWERS",    "NOJ"): 1e-6,
     ("BQ",         "NOJ"): 1e-7,
     ("RQ",         "NOJ"): 1e-7,
+    ("SGD",        "NOJ"): 1,
     ("360_WD",     "Gaussian"): 1e-5,
     ("72_WD",      "Gaussian"): 1e-5,
     ("Average_WS", "Gaussian"): 1e-5,
@@ -38,6 +39,7 @@ tolerances = {
     ("FLOWERS",    "Gaussian"): 1e-6,
     ("BQ",         "Gaussian"): 1e-6,
     ("RQ",         "Gaussian"): 1e-6,
+    ("SGD",        "Gaussian"): 1,
     ("360_WD",     "TurbOPark"): 1e-6,
     ("72_WD",      "TurbOPark"): 1e-7,
     ("Average_WS", "TurbOPark"): 1e-6,
@@ -45,6 +47,7 @@ tolerances = {
     ("FLOWERS",    "TurbOPark"): 1e-6,
     ("BQ",         "TurbOPark"): 1e-7,
     ("RQ",         "TurbOPark"): 1e-7,
+    ("SGD",        "TurbOPark"): 1,
 }
 
 tasks = []

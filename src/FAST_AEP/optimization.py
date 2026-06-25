@@ -2,8 +2,9 @@ from topfarm.constraint_components.boundary import XYBoundaryConstraint
 from topfarm.constraint_components.spacing import SpacingConstraint
 from topfarm.cost_models.cost_model_wrappers import CostModelComponent
 from topfarm import TopFarmProblem
-from topfarm.easy_drivers import EasyScipyOptimizeDriver
+from topfarm.easy_drivers import EasyScipyOptimizeDriver, EasySGDDriver
 from topfarm.plotting import XYPlotComp
+from topfarm.constraint_components.constraint_aggregation import DistanceConstraintAggregation
 
 from FAST_AEP.utils import *
 
@@ -66,7 +67,7 @@ class optifast:
         self.max_y = self.wf_limits[:, 1].max()
 
         if self.normalization:
-            self.aep_0 = self.wind_farm_model.aep(self.x_0, self.y_0)
+            self.aep_0 = self.wind_farm_model.aep(self.x_0, self.y_0) + 1e-12  # Added because AEP from SGD is zero
 
         else:
             self.aep_0 = 1
@@ -107,10 +108,9 @@ class optifast:
         """Set up objective function, in this case AEP"""
 
         def aep_function(x, y):
-            # Some wind farm models (e.g. Flowers) do not accept n_cpu; ignore it for those models
-            model_name = self.wind_farm_model.__class__.__name__.lower()
-            module_name = getattr(self.wind_farm_model.__class__, '__module__', '').lower()
-            if 'flowers' in model_name or 'flowers' in module_name:
+            # Some wind farm models (e.g. FLOWERS) do not accept n_cpu; ignore it for those models
+            model_name = self.wind_farm_model.name
+            if model_name == "FLOWERS":
                 aep = self.wind_farm_model.aep(x, y)
             else:
                 aep = self.wind_farm_model.aep(x, y, n_cpu=self.n_cpu)
@@ -123,9 +123,10 @@ class optifast:
         """Set up gradient function, in this case AEP gradient"""
 
         def aep_gradient(x, y):
-            model_name = self.wind_farm_model.__class__.__name__.lower()
-            module_name = getattr(self.wind_farm_model.__class__, '__module__', '').lower()
-            if 'flowers' in model_name or 'flowers' in module_name:
+            # Some wind farm models (e.g. FLOWERS) do not accept n_cpu, or accounted for it before (BQ, RQ)
+            # Ignore it for those models
+            model_name = self.wind_farm_model.name
+            if model_name in ["FLOWERS", "BQ", "RQ"]:
                 grad_x, grad_y = self.wind_farm_model.aep_gradient(x, y)
             else:
                 grad_x, grad_y = self.wind_farm_model.aep_gradient(x, y, n_cpu=self.n_cpu)
@@ -145,11 +146,20 @@ class optifast:
             minimum_distance = self.min_spacing * self.windTurbines.diameter()
             turbine_separation_constrain = SpacingConstraint(min_spacing=minimum_distance)
 
-            return [turbine_separation_constrain, wf_limits_const]
+            if self.wind_farm_model.name == "SGD":
+                constrains = DistanceConstraintAggregation(wf_limits_const, self.n_turbines, self.min_spacing*self.windTurbines.diameter(), self.windTurbines)
+                return [constrains]
+
+            else:
+                return [turbine_separation_constrain, wf_limits_const]
         
         else:
-            # For the double step optimization, the first optimization does not consider distance constraints
-            return [wf_limits_const]
+            if self.wind_farm_model.name == "SGD":
+                constrains = DistanceConstraintAggregation(wf_limits_const, self.n_turbines, 0, self.windTurbines)
+                return [constrains]
+            
+            else:
+                return [wf_limits_const]
         
 
     def setup_problem(self, tolerance=1, expected_cost=1, max_iter=100):
@@ -170,9 +180,15 @@ class optifast:
                                             output_keys=['AEP'])
         
         # Set up driver
-        driver = EasyScipyOptimizeDriver(optimizer="SLSQP",
-                                        maxiter=max_iter,
-                                        tol=tolerance)
+        if self.wind_farm_model.name == "SGD":
+            learning_rate = self.windTurbines.diameter()/5
+            gamma_min_factor = 0.1
+            driver = EasySGDDriver(maxiter=max_iter, learning_rate=learning_rate, gamma_min_factor=gamma_min_factor)
+            
+        else:
+            driver = EasyScipyOptimizeDriver(optimizer="SLSQP",
+                                            maxiter=max_iter,
+                                            tol=tolerance)
 
         # Normalize if necessary
         if self.normalization:

@@ -62,7 +62,9 @@ class FLOWERS_model(ABC):
         # I could not find any other way of obtaining the power coefficient
         ideal_power = 1/2 * self.rho * self.windTurbines.diameter()**2/4 * anp.pi * self.avg_ws**3
         self.cp = self.windTurbines.power(self.avg_ws)/ideal_power
-        self.ct = self.windTurbines.ct(self.avg_ws)  
+        self.ct = self.windTurbines.ct(self.avg_ws)
+
+        self.name = "FLOWERS"
 
 
     def aep(self, x, y):

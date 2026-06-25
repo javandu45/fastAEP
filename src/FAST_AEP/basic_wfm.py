@@ -60,6 +60,7 @@ class WD_Bins(BasicWFM):
         super().__init__(site, windTurbines, deficit_model, k=k)
 
         self.n_bins = n_bins
+        self.name = f"{n_bins}_WD"
 
 
     def aep(self, x, y, n_cpu=1):
@@ -105,6 +106,8 @@ class average_WS(BasicWFM):
         self.avg_ws = site.ds.Weibull_A.values[:-1] * gamma(1 + 1/site.ds.Weibull_k.values[:-1])
         self.freqs = site.ds.Sector_frequency.values[:-1]
         self.freqs = self.freqs / sum(self.freqs)
+
+        self.name = "Average_WS"
 
 
     def aep(self, x, y, n_cpu=1):
@@ -174,5 +177,7 @@ class uniform_CT(average_WS):
                                 wake_deficitModel=deficit_model,
                                 superpositionModel=SquaredSum(),
                                 rotorAvgModel=AreaOverlapAvgModel())
+            
+        self.name = "Uniform_CT"
             
 

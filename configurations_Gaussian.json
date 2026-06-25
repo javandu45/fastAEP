@@ -40,7 +40,607 @@
     "start_id": 4
   },
   {
-    "farm_id": "East_Anglia_THREE",
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_3_HOW03",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Thor",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
@@ -48,7 +648,7 @@
     "start_id": 0
   },
   {
-    "farm_id": "East_Anglia_THREE",
+    "farm_id": "Thor",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
@@ -56,7 +656,7 @@
     "start_id": 1
   },
   {
-    "farm_id": "East_Anglia_THREE",
+    "farm_id": "Thor",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
@@ -64,7 +664,7 @@
     "start_id": 2
   },
   {
-    "farm_id": "East_Anglia_THREE",
+    "farm_id": "Thor",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
@@ -72,7 +672,7 @@
     "start_id": 3
   },
   {
-    "farm_id": "East_Anglia_THREE",
+    "farm_id": "Thor",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
@@ -80,44 +680,604 @@
     "start_id": 4
   },
   {
-    "farm_id": "Sofia",
+    "farm_id": "Thor",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 0
   },
   {
-    "farm_id": "Sofia",
-    "aep_method": "FLOWERS",
+    "farm_id": "Thor",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 1
   },
   {
-    "farm_id": "Sofia",
-    "aep_method": "FLOWERS",
+    "farm_id": "Thor",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 2
   },
   {
-    "farm_id": "Sofia",
-    "aep_method": "FLOWERS",
+    "farm_id": "Thor",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 3
   },
   {
-    "farm_id": "Sofia",
-    "aep_method": "FLOWERS",
+    "farm_id": "Thor",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 4
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Thor",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 9
   },
   {
     "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
@@ -160,7 +1320,607 @@
     "start_id": 4
   },
   {
-    "farm_id": "Hornsea_Project_2_-_Phase_2_Soundmark",
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Hornsea_Project_2_-_Phase_1_Breesea",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Sofia",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
@@ -168,7 +1928,7 @@
     "start_id": 0
   },
   {
-    "farm_id": "Hornsea_Project_2_-_Phase_2_Soundmark",
+    "farm_id": "Sofia",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
@@ -176,7 +1936,7 @@
     "start_id": 1
   },
   {
-    "farm_id": "Hornsea_Project_2_-_Phase_2_Soundmark",
+    "farm_id": "Sofia",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
@@ -184,7 +1944,7 @@
     "start_id": 2
   },
   {
-    "farm_id": "Hornsea_Project_2_-_Phase_2_Soundmark",
+    "farm_id": "Sofia",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
@@ -192,7 +1952,7 @@
     "start_id": 3
   },
   {
-    "farm_id": "Hornsea_Project_2_-_Phase_2_Soundmark",
+    "farm_id": "Sofia",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
@@ -200,203 +1960,603 @@
     "start_id": 4
   },
   {
-    "farm_id": "Hornsea_Project_2_-_Phase_3_Sonningmay",
+    "farm_id": "Sofia",
     "aep_method": "FLOWERS",
     "wake_model": "Gaussian",
     "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "FLOWERS",
+    "wake_model": "Gaussian",
+    "n_cpu": 1,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "72_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Average_WS",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "Uniform_CT",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 0
   },
   {
-    "farm_id": "Hornsea_Project_2_-_Phase_3_Sonningmay",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 1
   },
   {
-    "farm_id": "Hornsea_Project_2_-_Phase_3_Sonningmay",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 2
   },
   {
-    "farm_id": "Hornsea_Project_2_-_Phase_3_Sonningmay",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 3
   },
   {
-    "farm_id": "Hornsea_Project_2_-_Phase_3_Sonningmay",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 4
   },
   {
-    "farm_id": "Norfolk_Vanguard_East",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "BQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "BQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 0
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 1
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 2
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 3
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 4
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "360_WD",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-05,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 0
   },
   {
-    "farm_id": "Norfolk_Vanguard_East",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "RQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 1
   },
   {
-    "farm_id": "Norfolk_Vanguard_East",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "RQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 2
   },
   {
-    "farm_id": "Norfolk_Vanguard_East",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "RQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 3
   },
   {
-    "farm_id": "Norfolk_Vanguard_East",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "RQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
     "start_id": 4
   },
   {
-    "farm_id": "Dogger_Bank_C",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "RQ",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
+    "n_cpu": 8,
     "tol": 1e-06,
+    "start_id": 5
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 6
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 7
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 8
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "RQ",
+    "wake_model": "Gaussian",
+    "n_cpu": 8,
+    "tol": 1e-06,
+    "start_id": 9
+  },
+  {
+    "farm_id": "Sofia",
+    "aep_method": "SGD",
+    "wake_model": "Gaussian",
+    "n_cpu": 4,
+    "tol": 1,
     "start_id": 0
   },
   {
-    "farm_id": "Dogger_Bank_C",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "SGD",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
+    "n_cpu": 4,
+    "tol": 1,
     "start_id": 1
   },
   {
-    "farm_id": "Dogger_Bank_C",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "SGD",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
+    "n_cpu": 4,
+    "tol": 1,
     "start_id": 2
   },
   {
-    "farm_id": "Dogger_Bank_C",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "SGD",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
+    "n_cpu": 4,
+    "tol": 1,
     "start_id": 3
   },
   {
-    "farm_id": "Dogger_Bank_C",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "SGD",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
+    "n_cpu": 4,
+    "tol": 1,
     "start_id": 4
   },
   {
-    "farm_id": "Dogger_Bank_B",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "SGD",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
-    "start_id": 0
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 5
   },
   {
-    "farm_id": "Dogger_Bank_B",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "SGD",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
-    "start_id": 1
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 6
   },
   {
-    "farm_id": "Dogger_Bank_B",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "SGD",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
-    "start_id": 2
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 7
   },
   {
-    "farm_id": "Dogger_Bank_B",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "SGD",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
-    "start_id": 3
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 8
   },
   {
-    "farm_id": "Dogger_Bank_B",
-    "aep_method": "FLOWERS",
+    "farm_id": "Sofia",
+    "aep_method": "SGD",
     "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
-    "start_id": 4
-  },
-  {
-    "farm_id": "Inch_Cape_Offshore_Wind_Farm",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
-    "start_id": 0
-  },
-  {
-    "farm_id": "Inch_Cape_Offshore_Wind_Farm",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
-    "start_id": 1
-  },
-  {
-    "farm_id": "Inch_Cape_Offshore_Wind_Farm",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
-    "start_id": 2
-  },
-  {
-    "farm_id": "Inch_Cape_Offshore_Wind_Farm",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
-    "start_id": 3
-  },
-  {
-    "farm_id": "Inch_Cape_Offshore_Wind_Farm",
-    "aep_method": "FLOWERS",
-    "wake_model": "Gaussian",
-    "n_cpu": 1,
-    "tol": 1e-06,
-    "start_id": 4
+    "n_cpu": 4,
+    "tol": 1,
+    "start_id": 9
   }
 ]

@@ -659,8 +659,7 @@ class bayesian_quadrature():
         return 
 
 
-    def aep_gradient(self, x=None, y=None, n_cpu=1):
-        # n_cpu is not used, its only to match optimization code
+    def aep_gradient(self, x=None, y=None):
 
         """
         Compute the gradient of the AEP with respect to the turbine coordinates using automatic diffierentiation
