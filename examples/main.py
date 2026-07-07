@@ -17,10 +17,10 @@ import numpy as np
 
 def main():
 
-    wind_farm = "Hornsea_Project_3_HOW03"
+    wind_farm = "Hornsea_Project_2_-_Phase_1_Breesea"
     wake_model = "TurbOPark"
-    aep_method = "360_WD"
-    n_cpu = 8
+    aep_method = "FLOWERS"
+    n_cpu = 1
     tol = 1e-6
 
     # Set up optimization
@@ -222,7 +222,7 @@ def main():
     fig.suptitle("AEP Optimization Convergence")
     plt.tight_layout()
     plt.show()
-    plt.savefig("optimization_convergence.png", dpi=300)
+    # plt.savefig("optimization_convergence.png", dpi=300)
 
     # Plot the optimized layout
     plt.figure(figsize=(5, 5))
@@ -234,7 +234,7 @@ def main():
     plt.axis('equal')
     plt.legend()
     plt.grid()
-    plt.savefig("optimized_layout.png", dpi=300)
+    # plt.savefig("optimized_layout.png", dpi=300)
     plt.show()
 
 
