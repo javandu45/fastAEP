@@ -15,191 +15,228 @@ import time
 import matplotlib.pyplot as plt
 import numpy as np
 
-wind_farm = "Hornsea_Project_2_-_Phase_1_Breesea"
-deficit_model = "NOJ"
-aep_method = "SGD"
-n_cpu = 1
+def main():
 
-site = generic_site(wind_farm)
-turbine = turbine_generator(wind_farm)
+    wind_farm = "Hornsea_Project_3_HOW03"
+    wake_model = "TurbOPark"
+    aep_method = "360_WD"
+    n_cpu = 8
+    tol = 1e-6
 
-wind_farm_data = get_wind_farm_data(wind_farm)
+    # Set up optimization
+    # Excpected costs
+    if wake_model == "NOJ":
+        expected_cost = 10
+    elif wake_model == "Gaussian":
+        expected_cost = 1
+        if aep_method == "FLOWERS":
+            expected_cost = 1e-4
+    elif wake_model == "TurbOPark":
+        expected_cost = 10
+        if aep_method == "360_WD":
+            expected_cost = 1
+            tol = 1e-6
 
-# Print wind farm data
-print(f"Wind Farm: {wind_farm}")
-print(f"Number of Turbines: {wind_farm_data['turbine_count'].values[0]}")
-print(f"Capacity: {wind_farm_data['capacity_mw'].values[0]} MW")
+    # Maximum number of iterations
+    max_iter = 150
+    if (aep_method == "RQ" or aep_method == "BQ") and wake_model == "Gaussian":
+        max_iter = 100
+    elif aep_method == "SGD":
+        max_iter = 2000
 
-evaluating_wfm = WD_Bins(site=site, windTurbines=turbine, deficit_model=deficit_model, n_bins=360)
+    # Distancing constraints
+    min_spacing = None  # Default is no distancing constraints
+    if wind_farm in ["Hornsea_Project_2_-_Phase_1_Breesea", "Sofia"]:
+        min_spacing = 3
 
-wfm = build_aep_model(wind_farm=wind_farm, deficit_model=deficit_model, aep_method=aep_method, k=0.05, n_cpu=n_cpu)
+    # Normalization
+    normalization = True
+    if aep_method == "SGD":
+        normalization = False
 
-# ########################################################################################
-# First optimization - Not including distance constraints
-# optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=None, n_cpu=8)
+    site = generic_site(wind_farm)
+    turbine = turbine_generator(wind_farm)
 
-# tf_problem = optimization_problem.setup_problem(tolerance=1e-6, expected_cost=10, max_iter=100)
+    wind_farm_data = get_wind_farm_data(wind_farm)
 
-# print("\n" + "-" * 50)
-# print("Starting optimization...")
-# time_start = time.time()
-# _, state, recorder = tf_problem.optimize()
-# time_end = time.time()
-# time_1 = time_end - time_start
+    # Print wind farm data
+    print(f"Wind Farm: {wind_farm}")
+    print(f"Number of Turbines: {wind_farm_data['turbine_count'].values[0]}")
+    print(f"Capacity: {wind_farm_data['capacity_mw'].values[0]} MW")
 
-# if optimization_problem.normalization:
-#     x_opt = state["x_norm"] * optimization_problem.max_x
-#     y_opt = state["y_norm"] * optimization_problem.max_y
+    evaluating_wfm = WD_Bins(site=site, windTurbines=turbine, deficit_model=wake_model, n_bins=360)
 
-# else:
-#     x_opt = state["x"]
-#     y_opt = state["y"]
+    wfm = build_aep_model(wind_farm=wind_farm, deficit_model=wake_model, aep_method=aep_method, k=0.05, n_cpu=n_cpu)
 
-# limits = optimization_problem.wf_limits
+    # ########################################################################################
+    # First optimization - Not including distance constraints
+    # optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=None, n_cpu=8)
 
-# # Compute distance between turbines
-# dist = []
-# for i in range(len(x_opt)):
-#     for j in range(i + 1, len(x_opt)):
-#         dist.append(np.sqrt((x_opt[i] - x_opt[j])**2 + (y_opt[i] - y_opt[j])**2))
+    # tf_problem = optimization_problem.setup_problem(tolerance=1e-6, expected_cost=10, max_iter=100)
 
-# D = optimization_problem.windTurbines.diameter()
+    # print("\n" + "-" * 50)
+    # print("Starting optimization...")
+    # time_start = time.time()
+    # _, state, recorder = tf_problem.optimize()
+    # time_end = time.time()
+    # time_1 = time_end - time_start
 
-# print(f"Optimization completed in {time_1:.2f} seconds")
-# print(f"Optimized AEP: {evaluating_wfm.aep(x_opt, y_opt):.2f} GWh")
-# print(f"Minimum distance as multiple of turbine diameter: {np.min(dist)/D:.2f}")
+    # if optimization_problem.normalization:
+    #     x_opt = state["x_norm"] * optimization_problem.max_x
+    #     y_opt = state["y_norm"] * optimization_problem.max_y
 
-# convergence_1 = recorder.get("cost")
+    # else:
+    #     x_opt = state["x"]
+    #     y_opt = state["y"]
 
-# # Plot convergence
-# # plt.figure(figsize=(8, 5))
-# # plt.plot(-convergence, marker='o')
-# # plt.title("AEP Optimization Convergence")
-# # plt.xlabel("Iteration")
-# # plt.ylabel("AEP (GWh)")
-# # plt.grid()
-# # plt.show()
+    # limits = optimization_problem.wf_limits
 
-# ########################################################################################
-# # Second optimization - Including distance constraints
-# optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=4, x_0=x_opt, y_0=y_opt, n_cpu=8)
+    # # Compute distance between turbines
+    # dist = []
+    # for i in range(len(x_opt)):
+    #     for j in range(i + 1, len(x_opt)):
+    #         dist.append(np.sqrt((x_opt[i] - x_opt[j])**2 + (y_opt[i] - y_opt[j])**2))
 
-# tf_problem = optimization_problem.setup_problem(tolerance=1e-3, expected_cost=10, max_iter=100)
+    # D = optimization_problem.windTurbines.diameter()
 
-# print("\n")
-# print("-" * 50)
-# print("Starting optimization with distance constraints...")
-# time_start = time.time()
-# _, state, recorder = tf_problem.optimize()
-# time_end = time.time()
-# time_2 = time_end - time_start
+    # print(f"Optimization completed in {time_1:.2f} seconds")
+    # print(f"Optimized AEP: {evaluating_wfm.aep(x_opt, y_opt):.2f} GWh")
+    # print(f"Minimum distance as multiple of turbine diameter: {np.min(dist)/D:.2f}")
 
-# if optimization_problem.normalization:
-#     x_opt = state["x_norm"] * optimization_problem.max_x
-#     y_opt = state["y_norm"] * optimization_problem.max_y
-# else:
-#     x_opt = state["x"]
-#     y_opt = state["y"]
+    # convergence_1 = recorder.get("cost")
 
+    # # Plot convergence
+    # # plt.figure(figsize=(8, 5))
+    # # plt.plot(-convergence, marker='o')
+    # # plt.title("AEP Optimization Convergence")
+    # # plt.xlabel("Iteration")
+    # # plt.ylabel("AEP (GWh)")
+    # # plt.grid()
+    # # plt.show()
 
-# limits = optimization_problem.wf_limits
+    # ########################################################################################
+    # # Second optimization - Including distance constraints
+    # optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm_flowers, min_spacing=4, x_0=x_opt, y_0=y_opt, n_cpu=8)
 
-# # Compute distance between turbines
-# dist = []
-# for i in range(len(x_opt)):
-#     for j in range(i + 1, len(x_opt)):
-#         dist.append(np.sqrt((x_opt[i] - x_opt[j])**2 + (y_opt[i] - y_opt[j])**2))
+    # tf_problem = optimization_problem.setup_problem(tolerance=1e-3, expected_cost=10, max_iter=100)
 
-# D = optimization_problem.windTurbines.diameter()
+    # print("\n")
+    # print("-" * 50)
+    # print("Starting optimization with distance constraints...")
+    # time_start = time.time()
+    # _, state, recorder = tf_problem.optimize()
+    # time_end = time.time()
+    # time_2 = time_end - time_start
 
-# print(f"Optimization completed in {time_2:.2f} seconds")
-# print(f"Optimized AEP: {evaluating_wfm.aep(x_opt, y_opt):.2f} GWh")
-# print(f"Minimum distance as multiple of turbine diameter: {np.min(dist)/D:.2f}")
-
-# aep_2_tier = evaluating_wfm.aep(x_opt, y_opt)
-# convergence_2 = recorder.get("cost")
-
-########################################################################################
-# Total optimization - Including distance constraints from the beginning
-optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm, min_spacing=None, n_cpu=n_cpu, normalization=False)
-
-tf_problem = optimization_problem.setup_problem(tolerance=1e-6, expected_cost=10, max_iter=100)
-
-print("\n")
-print("-" * 50)
-print("Starting optimization with distance constraints...")
-time_start = time.time()
-_, state, recorder = tf_problem.optimize()
-time_end = time.time()
-time_3 = time_end - time_start
-
-if optimization_problem.normalization:
-    x_opt = state["x_norm"] * optimization_problem.max_x
-    y_opt = state["y_norm"] * optimization_problem.max_y
-else:
-    x_opt = state["x"]
-    y_opt = state["y"]
+    # if optimization_problem.normalization:
+    #     x_opt = state["x_norm"] * optimization_problem.max_x
+    #     y_opt = state["y_norm"] * optimization_problem.max_y
+    # else:
+    #     x_opt = state["x"]
+    #     y_opt = state["y"]
 
 
-limits = optimization_problem.wf_limits
+    # limits = optimization_problem.wf_limits
 
-# Compute distance between turbines
-dist = []
-for i in range(len(x_opt)):
-    for j in range(i + 1, len(x_opt)):
-        dist.append(np.sqrt((x_opt[i] - x_opt[j])**2 + (y_opt[i] - y_opt[j])**2))
+    # # Compute distance between turbines
+    # dist = []
+    # for i in range(len(x_opt)):
+    #     for j in range(i + 1, len(x_opt)):
+    #         dist.append(np.sqrt((x_opt[i] - x_opt[j])**2 + (y_opt[i] - y_opt[j])**2))
 
-D = optimization_problem.windTurbines.diameter()
+    # D = optimization_problem.windTurbines.diameter()
 
-print(f"Optimization completed in {time_3:.2f} seconds")
-print(f"Optimized AEP: {evaluating_wfm.aep(x_opt, y_opt):.2f} GWh")
-print(f"Minimum distance as multiple of turbine diameter: {np.min(dist)/D:.2f}")
+    # print(f"Optimization completed in {time_2:.2f} seconds")
+    # print(f"Optimized AEP: {evaluating_wfm.aep(x_opt, y_opt):.2f} GWh")
+    # print(f"Minimum distance as multiple of turbine diameter: {np.min(dist)/D:.2f}")
 
-# aep_1_tier = evaluating_wfm.aep(x_opt, y_opt)
-convergence_3 = recorder.get("cost")
+    # aep_2_tier = evaluating_wfm.aep(x_opt, y_opt)
+    # convergence_2 = recorder.get("cost")
 
-# print("\n" + "#" * 50)
-# print(f"Total two-tier optimization time: {time_1 + time_2:.2f} seconds")
-# print(f"Total one-tier optimization time: {time_3:.2f} seconds")
-# print(f"Two-tier optimization AEP: {aep_2_tier:.2f} GWh")
-# print(f"One-tier optimization AEP: {aep_1_tier:.2f} GWh")
-# print("#" * 50)
+    ########################################################################################
+    # Total optimization - Including distance constraints from the beginning
+    optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm, min_spacing=None, n_cpu=n_cpu, normalization=True, seed=1)
+
+    tf_problem = optimization_problem.setup_problem(tolerance=tol, expected_cost=expected_cost, max_iter=200)
+
+    print("\n")
+    print("-" * 50)
+    print("Starting optimization with distance constraints...")
+    time_start = time.time()
+    _, state, recorder = tf_problem.optimize()
+    time_end = time.time()
+    time_3 = time_end - time_start
+
+    if optimization_problem.normalization:
+        x_opt = state["x_norm"] * optimization_problem.max_x
+        y_opt = state["y_norm"] * optimization_problem.max_y
+    else:
+        x_opt = state["x"]
+        y_opt = state["y"]
 
 
-# Plot all convergence curves
-fig, axes = plt.subplots(1, 1, figsize=(6, 5))
+    limits = optimization_problem.wf_limits
 
-# axes[0].plot(-convergence_1, marker='o')
-# axes[0].set_title('Two-tier Optimization\n(No Distance Constraints)')
-# axes[0].set_xlabel('Iteration')
-# axes[0].set_ylabel('Negative AEP')
-# axes[0].grid()
+    # Compute distance between turbines
+    dist = []
+    for i in range(len(x_opt)):
+        for j in range(i + 1, len(x_opt)):
+            dist.append(np.sqrt((x_opt[i] - x_opt[j])**2 + (y_opt[i] - y_opt[j])**2))
 
-# axes[1].plot(-convergence_2, marker='o')
-# axes[1].set_title('Two-tier Optimization\n(With Distance Constraints)')
-# axes[1].set_xlabel('Iteration')
-# axes[1].grid()
+    D = optimization_problem.windTurbines.diameter()
 
-axes.plot(-convergence_3, marker='o')
-axes.set_title('One-tier Optimization\n(With Distance Constraints)')
-axes.set_xlabel('Iteration')
-axes.grid()
+    print(f"Optimization completed in {time_3:.2f} seconds")
+    print(f"Optimized AEP: {evaluating_wfm.aep(x_opt, y_opt):.2f} GWh")
+    print(f"Minimum distance as multiple of turbine diameter: {np.min(dist)/D:.2f}")
 
-fig.suptitle("AEP Optimization Convergence")
-plt.tight_layout()
-plt.show()
-plt.savefig("optimization_convergence.png", dpi=300)
+    # aep_1_tier = evaluating_wfm.aep(x_opt, y_opt)
+    convergence_3 = recorder.get("cost")
 
-# Plot the optimized layout
-plt.figure(figsize=(5, 5))
-plt.scatter(x_opt, y_opt, c='blue', label='Optimized Turbine Positions')
-plt.plot(limits[:, 0], limits[:, 1], 'k-', label='Wind Farm Boundary')
-plt.title(f"Optimized Wind Farm Layout for {wind_farm}")
-plt.xlabel("X Position (m)")
-plt.ylabel("Y Position (m)")
-plt.axis('equal')
-plt.legend()
-plt.grid()
-plt.savefig("optimized_layout.png", dpi=300)
-plt.show()
+    # print("\n" + "#" * 50)
+    # print(f"Total two-tier optimization time: {time_1 + time_2:.2f} seconds")
+    # print(f"Total one-tier optimization time: {time_3:.2f} seconds")
+    # print(f"Two-tier optimization AEP: {aep_2_tier:.2f} GWh")
+    # print(f"One-tier optimization AEP: {aep_1_tier:.2f} GWh")
+    # print("#" * 50)
 
+
+    # Plot all convergence curves
+    fig, axes = plt.subplots(1, 1, figsize=(6, 5))
+
+    # axes[0].plot(-convergence_1, marker='o')
+    # axes[0].set_title('Two-tier Optimization\n(No Distance Constraints)')
+    # axes[0].set_xlabel('Iteration')
+    # axes[0].set_ylabel('Negative AEP')
+    # axes[0].grid()
+
+    # axes[1].plot(-convergence_2, marker='o')
+    # axes[1].set_title('Two-tier Optimization\n(With Distance Constraints)')
+    # axes[1].set_xlabel('Iteration')
+    # axes[1].grid()
+
+    axes.plot(-convergence_3, marker='o')
+    axes.set_title('One-tier Optimization\n(With Distance Constraints)')
+    axes.set_xlabel('Iteration')
+    axes.grid()
+
+    fig.suptitle("AEP Optimization Convergence")
+    plt.tight_layout()
+    plt.show()
+    plt.savefig("optimization_convergence.png", dpi=300)
+
+    # Plot the optimized layout
+    plt.figure(figsize=(5, 5))
+    plt.scatter(x_opt, y_opt, c='blue', label='Optimized Turbine Positions')
+    plt.plot(limits[:, 0], limits[:, 1], 'k-', label='Wind Farm Boundary')
+    plt.title(f"Optimized Wind Farm Layout for {wind_farm}")
+    plt.xlabel("X Position (m)")
+    plt.ylabel("Y Position (m)")
+    plt.axis('equal')
+    plt.legend()
+    plt.grid()
+    plt.savefig("optimized_layout.png", dpi=300)
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()

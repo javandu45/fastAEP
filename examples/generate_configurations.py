@@ -10,17 +10,25 @@ farms = list(wf["name"])
 farms.remove("Kriegers_Flak_K2-K3")  # Remove for now, since it is two different boundaries
 farms.remove("Gwynt_y_Mor")
 
+# Wind farms to study
 farms = ["Hornsea_Project_3_HOW03", "Thor","Hornsea_Project_2_-_Phase_1_Breesea", "Sofia"]
+# farms = ["East_Anglia_TWO", "Thor", "Sofia"]
+# farms = ["Hornsea_Project_3_HOW03"]
 
+
+# AEP methods to study, with number of CPUs to use for each method
 aep_methods = {
     "FLOWERS": 1, "72_WD": 8, "Average_WS": 8,
     "Uniform_CT": 8, "BQ": 8, "360_WD": 8,
     "RQ": 8, "SGD": 4
 }
+aep_methods = {"360_WD": 8}
 
-wake_models = ["TurbOPark"]
+# Wake models to study
+wake_models = ["NOJ"]
 
-n_multistarts = 10
+# Number of multi starts considered
+n_multistarts = 20
 
 # Tolerance for each (aep_method, wake_model) combination
 tolerances = {

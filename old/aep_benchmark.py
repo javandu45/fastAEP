@@ -2,8 +2,8 @@ from FAST_AEP.utils import generic_site, generate_array, turbine_generator, basi
 from FAST_AEP import FLOWERS
 from FAST_AEP.BQ import bayesian_quadrature
 import time
-import warnings
-warnings.filterwarnings("ignore")
+
+print("Imported all necessary modules")
 
 aep_methods = ["360_WD", "72_WD", "Average_WS", "FLOWERS", "RQ", "BQ", "Uniform_CT"]
 wake_models = ["NOJ", "Gaussian", "TurbOPark"]
@@ -88,7 +88,7 @@ for aep_method in aep_methods:
                 time_end = time.time()
             else:
                 time_start = time.time()
-                aep = wfm.aep(x, y, n_cpu=8)
+                aep = wfm.aep(x, y)
                 time_end = time.time()
 
             aeps_runs.append(aep)
@@ -125,7 +125,7 @@ for aep_method in aep_methods:
                 time_end = time.time()
             else:
                 time_start = time.time()
-                aep = wfm.aep(x, y, n_cpu=8)
+                aep = wfm.aep(x, y)
                 time_end = time.time()
 
             aeps_runs.append(aep)
@@ -162,7 +162,7 @@ for aep_method in aep_methods:
                 time_end = time.time()
             else:
                 time_start = time.time()
-                aep = wfm.aep(x, y, n_cpu=8)
+                aep = wfm.aep(x, y)
                 time_end = time.time()
 
             aeps_runs.append(aep)
@@ -175,18 +175,18 @@ for aep_method in aep_methods:
 import pandas as pd
 
 df_noj = pd.DataFrame(aeps_noj, index=turbine_ranges)
-df_noj.to_csv("results/benchmark_aep_noj.csv")
+df_noj.to_csv("results/benchmark_aep_noj_no_parallel.csv")
 df_gaussian = pd.DataFrame(aeps_gaussian, index=turbine_ranges)
-df_gaussian.to_csv("results/benchmark_aep_gaussian.csv")
+df_gaussian.to_csv("results/benchmark_aep_gaussian_no_parallel.csv")
 df_turbopark = pd.DataFrame(aeps_turbopark, index=turbine_ranges)
-df_turbopark.to_csv("results/benchmark_aep_turbopark.csv")
+df_turbopark.to_csv("results/benchmark_aep_turbopark_no_parallel.csv")
 
 df_noj_time = pd.DataFrame(times_noj, index=turbine_ranges)
-df_noj_time.to_csv("results/benchmark_runtime_noj.csv")
+df_noj_time.to_csv("results/benchmark_runtime_noj_no_parallel.csv")
 df_gaussian_time = pd.DataFrame(times_gaussian, index=turbine_ranges)
-df_gaussian_time.to_csv("results/benchmark_runtime_gaussian.csv")
+df_gaussian_time.to_csv("results/benchmark_runtime_gaussian_no_parallel.csv")
 df_turbopark_time = pd.DataFrame(times_turbopark, index=turbine_ranges)
-df_turbopark_time.to_csv("results/benchmark_runtime_turbopark.csv")
+df_turbopark_time.to_csv("results/benchmark_runtime_turbopark_no_parallel.csv")
 
 
 # Plot results
@@ -200,7 +200,7 @@ plt.xlabel("Number of turbines")
 plt.ylabel("AEP [GWh]")
 plt.title("AEP for different methods with NOJ wake model")
 plt.legend()
-plt.savefig("results/benchmark_aep_noj.png")
+plt.savefig("results/benchmark_aep_noj_no_parallel.png")
 
 plt.figure(figsize=(10, 6))
 for aep_method in aep_methods:
@@ -209,7 +209,7 @@ plt.xlabel("Number of turbines")
 plt.ylabel("AEP [GWh]")
 plt.title("AEP for different methods with Gaussian wake model")
 plt.legend()
-plt.savefig("results/benchmark_aep_gaussian.png")
+plt.savefig("results/benchmark_aep_gaussian_no_parallel.png")
 
 plt.figure(figsize=(10, 6))
 for aep_method in aep_methods:
@@ -218,7 +218,7 @@ plt.xlabel("Number of turbines")
 plt.ylabel("AEP [GWh]")
 plt.title("AEP for different methods with TurbOPark wake model")
 plt.legend()
-plt.savefig("results/benchmark_aep_turbopark.png")
+plt.savefig("results/benchmark_aep_turbopark_no_parallel.png")
 
 plt.figure(figsize=(10, 6))
 for aep_method in aep_methods:
@@ -227,7 +227,7 @@ plt.xlabel("Number of turbines")
 plt.ylabel("Runtime [s]")
 plt.title("Runtime for different methods with NOJ wake model")
 plt.legend()
-plt.savefig("results/benchmark_runtime_noj.png")
+plt.savefig("results/benchmark_runtime_noj_no_parallel.png")
 
 plt.figure(figsize=(10, 6))
 for aep_method in aep_methods:
@@ -236,7 +236,7 @@ plt.xlabel("Number of turbines")
 plt.ylabel("Runtime [s]")
 plt.title("Runtime for different methods with Gaussian wake model")
 plt.legend()
-plt.savefig("results/benchmark_runtime_gaussian.png")
+plt.savefig("results/benchmark_runtime_gaussian_no_parallel.png")
 
 plt.figure(figsize=(10, 6))
 for aep_method in aep_methods: 
@@ -245,4 +245,4 @@ plt.xlabel("Number of turbines")
 plt.ylabel("Runtime [s]")
 plt.title("Runtime for different methods with TurbOPark wake model")
 plt.legend()
-plt.savefig("results/benchmark_runtime_turbopark.png")
+plt.savefig("results/benchmark_runtime_turbopark_no_parallel.png")

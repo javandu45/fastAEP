@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Load the results from the parallelization experiment
-df = pd.read_csv("parallelization_results_100.csv")
+df = pd.read_csv("results//Parallelization/parallelization_g_results_100.csv")
 
 # Filter wfms (exclude 'flowers') and ensure required deficits order
 wfms = [w for w in df['wfm'].unique() if w.lower() != 'flowers']
@@ -40,5 +40,5 @@ for j in range(n_plots, len(flat_axes)):
 
 fig.suptitle("Parallelization results for 100 turbines", fontsize=16)
 fig.tight_layout()
-fig.savefig("parallelization_results_100.png")
+fig.savefig("parallelization_g_results_100.png")
 plt.show()

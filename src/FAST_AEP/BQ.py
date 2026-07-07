@@ -63,6 +63,7 @@ class bayesian_quadrature():
         self.N_train = N_train
         self.kernel_type = kernel_type
         self.aep_method = aep_method
+        self.name = aep_method
 
         # Wind speed and direction characteristics from the site
         self.A_weibull = site.ds.Weibull_A.values

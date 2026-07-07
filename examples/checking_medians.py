@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 
 results_dir = Path("results/optimization")
-n_starts = 30
+n_starts = 50
 N_BOOTSTRAP = 1000
 
 def load_values(farm_id, aep_method):
@@ -14,7 +14,7 @@ def load_values(farm_id, aep_method):
 
     with h5py.File(filepath, "r") as f:
         for start_idx in range(n_starts):
-            group_key = f"{aep_method}/NOJ/start_{start_idx}"
+            group_key = f"{aep_method}/Gaussian/start_{start_idx}"
             if group_key not in f:
                 continue
             grp = f[group_key]
@@ -75,7 +75,7 @@ def iter_summary(iter_values):
 
 farms = ["East_Anglia_TWO", "Thor", "Sofia"]
 methods = ["FLOWERS", "72_WD", "Average_WS", "Uniform_CT", "BQ", "360_WD", "RQ"]
-sample_sizes = [5, 10, 20, 30]
+sample_sizes = [5, 10, 20, 30, 40, 50]
 
 for farm in farms:
     print(f"\n{'='*80}")
@@ -112,14 +112,46 @@ for farm in farms:
         runtime_rows.append(runtime_row)
         iter_rows.append(iter_row)
 
-    print("\n--- AEP: Mean |% error| ± std of % error (vs. 30-sample median baseline) ---")
+    print("\n--- AEP: Mean |% error| ± std of % error (vs. 50-sample median baseline) ---")
     print(pd.DataFrame(aep_rows).set_index("method").to_string())
 
-    print("\n--- Runtime: Mean |% error| ± std of % error (vs. 30-sample median baseline) ---")
+    print("\n--- Runtime: Mean |% error| ± std of % error (vs. 50-sample median baseline) ---")
     print(pd.DataFrame(runtime_rows).set_index("method").to_string())
 
-    print("\n--- Iteration count distribution across 30 starts ---")
+    print("\n--- Iteration count distribution across 50 starts ---")
     iter_df = pd.DataFrame(iter_rows).set_index("method")[
         ["median_iter", "min_iter", "max_iter", "std_iter", "range"]
     ]
     print(iter_df.to_string())
+
+
+# Plot the median AEP and runtime errors for each method across sample sizes for all wind farms
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(2, 3, figsize=(16, 10), sharex=True)
+for i, farm in enumerate(farms):
+    ax_aep = axes[0, i]
+    ax_runtime = axes[1, i]
+
+    for method in methods:
+        aep_vals, runtime_vals, _ = load_values(farm, method)
+        aep_stats = bootstrap_median_errors(aep_vals, sample_sizes)
+        runtime_stats = bootstrap_median_errors(runtime_vals, sample_sizes)
+
+        aep_series = [aep_stats[n]['mean_abs_pct_err'] for n in sample_sizes]
+        runtime_series = [runtime_stats[n]['mean_abs_pct_err'] for n in sample_sizes]
+
+        ax_aep.plot(sample_sizes, aep_series, marker='o', label=method)
+        ax_runtime.plot(sample_sizes, runtime_series, marker='x', linestyle='--', label=method)
+
+    ax_aep.set_title(f"{farm} - AEP")
+    ax_runtime.set_title(f"{farm} - Runtime")
+    ax_runtime.set_xlabel("Sample Size")
+    ax_aep.set_ylabel("Mean |% Error|")
+    ax_runtime.set_ylabel("Mean |% Error|")
+    ax_aep.legend()
+    ax_runtime.legend()
+    ax_aep.grid()
+    ax_runtime.grid()
+plt.tight_layout()
+plt.savefig("median_errors_across_farms_30.png")

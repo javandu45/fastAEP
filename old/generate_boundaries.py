@@ -110,6 +110,7 @@ for _, row in top_20_wf.iterrows():
     pd.DataFrame(rows).to_csv(out_path, index=False)
 
 
+# Plot boundaries of the top 20 wind farms
 import matplotlib.pyplot as plt
 
 # Plot the boundaries of the top 20 wind farms
@@ -181,20 +182,20 @@ for _, row in top_20_wf.iterrows():
 
 # Add coordinates in UTM to the top_20_wf DataFrame
 
-# from pyproj import Transformer
+from pyproj import Transformer
 
-# def latlon_to_utm(lat, lon):
-#     zone_number = int((lon + 180) / 6) + 1
-#     epsg_code = 32600 + zone_number if lat >= 0 else 32700 + zone_number
+def latlon_to_utm(lat, lon):
+    zone_number = int((lon + 180) / 6) + 1
+    epsg_code = 32600 + zone_number if lat >= 0 else 32700 + zone_number
 
-#     transformer = Transformer.from_crs("EPSG:4326", f"EPSG:{epsg_code}", always_xy=True)
-#     easting, northing = transformer.transform(lon, lat)
+    transformer = Transformer.from_crs("EPSG:4326", f"EPSG:{epsg_code}", always_xy=True)
+    easting, northing = transformer.transform(lon, lat)
 
-#     return easting, northing
+    return easting, northing
 
-# for idx, row in top_20_wf_df.iterrows():
-#     lat = row["centroid_lat"]
-#     lon = row["centroid_lng"]
-#     easting, northing = latlon_to_utm(lat, lon)
-#     top_20_wf_df.at[idx, "centroid_easting"] = easting
-#     top_20_wf_df.at[idx, "centroid_northing"] = northing
+for idx, row in top_20_wf_df.iterrows():
+    lat = row["centroid_lat"]
+    lon = row["centroid_lng"]
+    easting, northing = latlon_to_utm(lat, lon)
+    top_20_wf_df.at[idx, "centroid_easting"] = easting
+    top_20_wf_df.at[idx, "centroid_northing"] = northing

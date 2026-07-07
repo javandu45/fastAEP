@@ -1,6 +1,7 @@
 from FAST_AEP.basic_wfm import WD_Bins, average_WS, uniform_CT
 from FAST_AEP.FLOWERS import NOJ_flowers, gaussian_flowers, TurbOPark_flowers
 from FAST_AEP.BQ import bayesian_quadrature
+from FAST_AEP.SGD import SGD
 from py_wake.superposition_models import SquaredSum
 from py_wake.wind_farm_models import PropagateDownwind
 from py_wake.deficit_models import TurboNOJDeficit
@@ -57,7 +58,8 @@ x, y = _random_square_layout(100, spacing=4)  # 100 turbines with 4 rotor diamet
 # 5. FLOWERS
 # 6. BQ
 # 7. RQ
-aep_models = ["360 WD", "72 WD", "Average WS", "Uniform CT", "FLOWERS", "BQ", "RQ"]
+# 8. SGD
+aep_models = ["360 WD", "72 WD", "Average WS", "Uniform CT", "FLOWERS", "BQ", "RQ", "SGD"]
 
 def setup_wfm(deficit_model):
 
@@ -86,6 +88,8 @@ def setup_wfm(deficit_model):
             wfm = setup_BQ_wfm(wfm_base, "BQ")
         elif aep_method == "RQ":
             wfm = setup_BQ_wfm(wfm_base, "RQ")
+        elif aep_method == "SGD":
+            wfm = SGD(site, turbines, deficit_model=deficit_model)
 
         wfms.append(wfm)
 
@@ -100,10 +104,31 @@ def compute_aep(n_CPUs, wfms, n_repeats=1):
         times = []
         for _ in range(n_repeats):
             start_time = time.time()
-            if 'flowers' in type(wfm).__name__.lower():
+            if wfm.name == "FLOWERS":
                 AEP = wfm.aep(x, y)
             else:
                 AEP = wfm.aep(x, y, n_cpu=n_CPUs)
+            end_time = time.time()
+            times.append(end_time - start_time)
+        avg_time = np.mean(times)
+        times_results.append(avg_time)
+
+    return times_results
+
+def compute_gradients(n_CPUs, wfms, n_repeats=1):
+
+    times_results = []
+    for wfm in wfms:
+        times = []
+        for _ in range(n_repeats):
+            start_time = time.time()
+            if wfm.name == "FLOWERS":
+                AEP = wfm.aep_gradient(x, y)
+            elif wfm.name in ["BQ", "RQ"]:
+                wfm.setup_gradients(n_cpu=n_CPUs)
+                AEP = wfm.aep_gradient(x, y)
+            else:
+                AEP = wfm.aep_gradient(x, y, n_cpu=n_CPUs)
             end_time = time.time()
             times.append(end_time - start_time)
         avg_time = np.mean(times)
@@ -131,7 +156,7 @@ results = {}
 for n_CPUs in n_CPUs_list:
     results[n_CPUs] = {}
     for deficit, wfms in wfm_all.items():
-        times = compute_aep(n_CPUs, wfms)
+        times = compute_gradients(n_CPUs, wfms)
         results[n_CPUs][deficit] = dict(zip(aep_models, times))
 
 # Save and print results in a table with all dimensions (CPU, deficit, WFM)
@@ -147,6 +172,6 @@ for n_CPUs, deficit_data in results.items():
             })
 
 df = pd.DataFrame(records)
-df.to_csv("parallelization_results_100.csv", index=False)
+df.to_csv("parallelization_g_results_100.csv", index=False)
 
 print(df.pivot_table(index=["deficit", "wfm"], columns="n_CPUs", values="time_s").to_string(float_format=lambda v: f"{v:.3f}"))
