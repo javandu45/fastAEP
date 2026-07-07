@@ -5,7 +5,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 from matplotlib.colors import TwoSlopeNorm
 
-wake_model = "TurbOPark"  # "NOJ", "Gaussian", "TurbOPark"
+wake_model = "Gaussian"  # "NOJ", "Gaussian", "TurbOPark"
 # wind_farms = ["East_Anglia_TWO", "Sofia", "Thor"]
 # wind_farm_names = ["East Anglia 2", "Sofia", "Thor"]
 aep_models = ["360_WD", "72_WD", "Average_WS", "FLOWERS", "Uniform_CT", "BQ", "RQ", "SGD"]
@@ -13,9 +13,8 @@ aep_models = ["360_WD", "72_WD", "Average_WS", "FLOWERS", "Uniform_CT", "BQ", "R
 wind_farms = ["Hornsea_Project_3_HOW03", "Thor", "Hornsea_Project_2_-_Phase_1_Breesea", "Sofia"]
 wind_farm_names = ["Hornsea 3 \n (231 WT)", "Thor \n (72 WT)", "Hornsea 2 \n (55 WT)", "Sofia \n (100 WT)"]
 
-wind_farms = ["Hornsea_Project_3_HOW03"]
 
-results_dir = Path("results/optimization/Iteration_3_4WF_20starts")
+results_dir = Path("results/optimization/")
 n_starts = 20
 
 # Normalize with respect to: "360_WD" or "max"
@@ -25,7 +24,7 @@ norm = "360_WD"
 tables = {}
 for wf in wind_farms:
     rows = []
-    h5_path = f"windfarm_{wf}.h5"
+    h5_path = results_dir / f"windfarm_{wf}.h5"
     with h5py.File(h5_path, "r") as f:
         for aep_model in aep_models:
             aeps, times = [], []

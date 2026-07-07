@@ -4,14 +4,14 @@ import pandas as pd
 import numpy as np
 
 farm_id = "Hornsea_Project_3_HOW03"
-aep_method = "360_WD"
+aep_method = "Uniform_CT"
 wake_model = "TurbOPark"
 median = False
 n_starts = 20
 
-results_dir = Path("results/optimization/Iteration_3_4WF_20starts")
+results_dir = Path("results/optimization")
 h5_path = results_dir / f"windfarm_{farm_id}.h5"
-h5_path = "windfarm_Hornsea_Project_3_HOW03.h5"
+# h5_path = "windfarm_Hornsea_Project_3_HOW03.h5"
 
 records = []
 median_records = []
