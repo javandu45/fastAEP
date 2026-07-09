@@ -22,10 +22,10 @@ aep_methods = {
     "Uniform_CT": 8, "BQ": 8, "360_WD": 8,
     "RQ": 8, "SGD": 4
 }
-aep_methods = {"360_WD": 8}
+aep_methods = {"FLOWERS": 1}
 
 # Wake models to study
-wake_models = ["NOJ"]
+wake_models = ["TurbOPark"]
 
 # Number of multi starts considered
 n_multistarts = 20

@@ -3,12 +3,13 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
-farm_id = "Hornsea_Project_3_HOW03"
-aep_method = "Uniform_CT"
+farm_id = "Hornsea_Project_2_-_Phase_1_Breesea"
+aep_method = "FLOWERS"
 wake_model = "TurbOPark"
-median = False
+median = True
 n_starts = 20
 
+results_dir = Path("results/optimization/Iteration_3_4WF_20starts")
 results_dir = Path("results/optimization")
 h5_path = results_dir / f"windfarm_{farm_id}.h5"
 # h5_path = "windfarm_Hornsea_Project_3_HOW03.h5"
@@ -42,7 +43,24 @@ with h5py.File(h5_path, "r") as f:
 plt.title(f"Convergence for {farm_id} with {aep_method} and {wake_model}")
 plt.xlabel("Iteration")
 plt.ylabel("Convergence")
-plt.savefig(f"convergence_{farm_id}_{aep_method}_{wake_model}.png", dpi=300)
+# plt.savefig(f"convergence_{farm_id}_{aep_method}_{wake_model}.png", dpi=300)
+
+# Print medians
+if median:
+    records_df = pd.DataFrame(records)
+    median_aep = records_df["aep"].median()
+    median_time = records_df["time"].median()
+    median_iteration = records_df["iteration"].median()
+
+    median_records.append({
+        "start_idx": "Median",
+        "aep": median_aep,
+        "time": median_time,
+        "iteration": median_iteration,
+    })
+
+    records = pd.DataFrame(median_records)
+
 
 # Print table with results
 results_table = pd.DataFrame(records)

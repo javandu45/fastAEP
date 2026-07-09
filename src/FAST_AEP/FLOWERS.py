@@ -664,7 +664,7 @@ class TurbOPark_flowers(FLOWERS_model):
         self.CT = self._universal_ct()
 
         # Fourier coefficients
-        fourier_function = self.cp**(1/3) * self.avg_ws_norm * (1-anp.sqrt(1-self.CT)) * self.freqs
+        fourier_function = self.cp**(1/3) * self.avg_ws_norm * (1-anp.sqrt(1-self.ct)) * self.freqs
         self.fc = self._fourier_coefficients(fourier_function)
 
         # Free stream AEP component for a single turbine (p_hat) - Equation 18
