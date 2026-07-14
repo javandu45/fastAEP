@@ -12,9 +12,7 @@ farms.remove("Gwynt_y_Mor")
 
 # Wind farms to study
 farms = ["Hornsea_Project_3_HOW03", "Thor","Hornsea_Project_2_-_Phase_1_Breesea", "Sofia"]
-# farms = ["East_Anglia_TWO", "Thor", "Sofia"]
-# farms = ["Hornsea_Project_3_HOW03"]
-
+farms = ["Hornsea_Project_2_-_Phase_1_Breesea", "Sofia"]
 
 # AEP methods to study, with number of CPUs to use for each method
 aep_methods = {
@@ -22,7 +20,6 @@ aep_methods = {
     "Uniform_CT": 8, "BQ": 8, "360_WD": 8,
     "RQ": 8, "SGD": 4
 }
-aep_methods = {"FLOWERS": 1}
 
 # Wake models to study
 wake_models = ["TurbOPark"]

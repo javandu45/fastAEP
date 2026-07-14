@@ -9,7 +9,9 @@ import warnings
 warnings.filterwarnings("ignore")
 
 def obtain_windrose(wind_farm):
-    
+
+    print(f"Obtaining wind rose for {wind_farm}...")
+
     data = xr.open_dataset(f'data/raw/{wind_farm}.nc')
     time = data.coords['time'].data
     data = data.to_dataframe().reset_index()
@@ -48,8 +50,8 @@ def obtain_windrose(wind_farm):
         return A, k
 
     sectors_sum = pd.DataFrame(columns=["A", "k", "weibull"])
-    sectors_sum["A"] = nd*[0]
-    sectors_sum["k"] = nd*[0]
+    sectors_sum["A"] = nd*[0.]
+    sectors_sum["k"] = nd*[0.]
     sectors_curve = {}
 
     U = np.linspace(0,30,100)
@@ -73,5 +75,9 @@ def obtain_windrose(wind_farm):
 wind_farms_to_read = pd.read_csv("data/top_20_windfarms.csv")
 
 for _, row in wind_farms_to_read.iterrows():
-    obtain_windrose(row["name"])
+    wind_farm = row["name"]
+    if wind_farm == "Hornsea_Project_3_HOW03":
+        print(f"Skipping {wind_farm} due to missing data.")
+        continue
+    obtain_windrose(wind_farm)
 

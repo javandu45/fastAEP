@@ -50,7 +50,7 @@ def main():
     elif wake_model == "TurbOPark":
         expected_cost = 10
         if aep_method == "360_WD":
-            expected_cost = 1
+            expected_cost = 10
             tol = 1e-6
 
     # Maximum number of iterations

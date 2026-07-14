@@ -334,4 +334,222 @@ for wf in wind_farms:
             })
     tables[wf] = pd.DataFrame(rows).set_index("AEP_model")
 
-# Plot scatter plots for each 
+# %% ----- Plot wind farm boundaries -----
+
+import matplotlib.pyplot as plt
+import numpy as np
+from FAST_AEP.utils import get_limits
+plt.rcParams.update({
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"]})
+
+wind_farms = ["Hornsea_Project_3_HOW03", "Sofia", "Thor", "Hornsea_Project_2_-_Phase_1_Breesea"]
+wind_farm_names = ["Hornsea 3 \n (231 WT, C)", "Sofia \n (100 WT, C, DC)", "Thor \n (72 WT, NC)", "Hornsea 2 \n (55 WT, NC, DC)"]
+
+fig, axes = plt.subplots(1, 4, figsize=(12,12))
+axes = axes.ravel()
+
+
+for ax, wf, wf_name in zip(axes, wind_farms, wind_farm_names):
+
+    if wf == "Hornsea_Project_3_HOW03":
+        limits = np.array([[ 460226.33753195, 5962329.18655583],
+       [ 486329.9958098 , 5948829.197878  ],
+       [ 479155.27816924, 5983568.46029649],
+       [ 447351.63299954, 5982707.50183493],
+       [ 460226.33753195, 5962329.18655583]])
+    else:
+        limits = get_limits(wf)
+
+    ax.plot(limits[:, 0], limits[:, 1], "k-", linewidth=2)
+    ax.fill(limits[:, 0], limits[:, 1], color="lightgray", alpha=0.5)
+    ax.set_title(wf_name, fontsize=10)
+
+
+    ax.set_aspect("equal", adjustable="box")
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.grid()
+
+plt.subplots_adjust(wspace=0.02, hspace=0.02)
+plt.savefig("wind_farm_boundaries.png", dpi=300, bbox_inches="tight")
+plt.show()
+
+# %% ----- Wind farms wind roses -----
+
+import matplotlib.pyplot as plt
+import numpy as np
+from FAST_AEP.utils import generic_site
+plt.rcParams.update({
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"]})
+
+wind_farms = ["Hornsea_Project_3_HOW03", "Sofia", "Thor", "Hornsea_Project_2_-_Phase_1_Breesea"]
+wind_farm_names = ["Hornsea 3 \n (231 WT, C)", "Sofia \n (100 WT, C, DC)", "Thor \n (72 WT, NC)", "Hornsea 2 \n (55 WT, NC, DC)"]
+
+# Define wind speed bins (m/s)
+speed_bins = np.array([0, 5, 10, 15, 20, 25])
+colors = ['#0570B0', '#FF7F00', '#2CA02C', '#D62728', '#9467BD']  # blue, orange, green, red, purple
+n_speed_bins = len(colors)
+
+# Create figure with 2x2 subplots for all 4 wind farms
+fig = plt.figure(figsize=(8, 8))
+
+for idx, (wf, wf_name) in enumerate(zip(wind_farms, wind_farm_names)):
+
+    site = generic_site(wind_farm=wf)
+    p = site.ds.Sector_frequency.values      # shape (360,)
+    A = site.ds.Weibull_A.values             # shape (360,)
+    k = site.ds.Weibull_k.values             # shape (360,)
+
+    # Bin 360 sectors into 12 sectors (30° each)
+    n_sectors = 12
+    sector_size = 360 // n_sectors
+    
+    # Frequency in each speed bin for each direction sector
+    freq_by_speed = np.zeros((n_sectors, n_speed_bins))
+    
+    for i in range(n_sectors):
+        idx_start = i * sector_size
+        idx_end = (i + 1) * sector_size
+        
+        # Get mean Weibull parameters for this direction sector
+        A_sector = np.mean(A[idx_start:idx_end])
+        k_sector = np.mean(k[idx_start:idx_end])
+        p_sector = np.mean(p[idx_start:idx_end])
+        
+        # Compute CDF for Weibull distribution
+        # P(v < speed) = 1 - exp(-(speed/A)^k)
+        cdf = 1 - np.exp(-(speed_bins / A_sector) ** k_sector)
+        
+        # Frequency for each speed bin = p_sector * (CDF[i+1] - CDF[i])
+        freq_by_speed[i, :] = p_sector * np.diff(cdf)
+    
+    # Wind directions for the 12 sectors
+    directions = np.arange(n_sectors) * sector_size + sector_size / 2
+    theta = np.deg2rad(directions)
+    
+    # Create polar subplot
+    ax = fig.add_subplot(2, 2, idx + 1, projection='polar')
+    
+    # Stacked bars: bottom of each bar starts at 0, then we stack the speed bins
+    bottom = np.zeros(n_sectors)
+    for speed_idx in range(n_speed_bins):
+        ax.bar(theta, freq_by_speed[:, speed_idx], width=np.deg2rad(sector_size),
+               bottom=bottom, label=f'{speed_bins[speed_idx]:.1f}-{speed_bins[speed_idx+1]:.1f} m/s',
+               color=colors[speed_idx], edgecolor='black', linewidth=0.5, alpha=0.8)
+        bottom += freq_by_speed[:, speed_idx]
+    
+    # Labels and formatting
+    ax.set_theta_zero_location('N')
+    ax.set_theta_direction(-1)  # Clockwise
+    ax.set_title(f'Wind Rose: {wf_name}', pad=20, fontsize=12, weight='bold')
+
+    ax.set_xticks(np.deg2rad(np.arange(0, 360, 30)))
+    ax.set_xticklabels([f'{int(d)}°' for d in np.arange(0, 360, 30)], fontsize=12)
+    ax.set_yticklabels([])
+
+# Create a single legend in the center for all subplots
+handles, labels = ax.get_legend_handles_labels()
+fig.legend(handles, labels, loc='center', bbox_to_anchor=(0.5, 0.5), frameon=True, fontsize=12)
+
+plt.tight_layout()
+plt.show()
+
+
+# %%
+
+import numpy as np
+import matplotlib.pyplot as plt
+from FAST_AEP.utils import generic_site
+
+# --- Publication-quality font/style setup (consistent with your other WES figures) ---
+plt.rcParams.update({
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
+    "font.size": 10,
+    "axes.labelsize": 10,
+    "axes.titlesize": 11,
+    "xtick.labelsize": 9,
+    "ytick.labelsize": 9,
+    "legend.fontsize": 9,
+    "mathtext.fontset": "custom",
+    "mathtext.rm": "Arial",
+    "mathtext.it": "Arial:italic",
+    "mathtext.bf": "Arial:bold",
+    "figure.facecolor": "white",
+    "axes.facecolor": "white",
+})
+
+wind_farms = ["Hornsea_Project_3_HOW03", "Sofia", "Thor", "Hornsea_Project_2_-_Phase_1_Breesea"]
+wind_farm_names = ["Hornsea 3\n(231 WT, C)", "Sofia\n(100 WT, C, DC)", "Thor\n(72 WT, NC)", "Hornsea 2\n(55 WT, NC, DC)"]
+
+
+# Wind speed bins (m/s) and a perceptually ordered, colorblind-friendlier palette
+speed_bins = np.array([0, 5, 10, 15, 20, 25])
+colors = ['#2166AC', '#67A9CF', '#F4A582', '#D6604D', '#B2182B']  # blue (calm) -> red (strong)
+n_speed_bins = len(colors)
+
+n_sectors = 12
+sector_size = 360 // n_sectors
+
+fig, axes = plt.subplots(2, 2, figsize=(7, 8.5), subplot_kw={'projection': 'polar'})
+axes = axes.flatten()
+
+for idx, (wf, wf_name) in enumerate(zip(wind_farms, wind_farm_names)):
+    ax = axes[idx]
+
+    site = generic_site(wind_farm=wf)
+    p = site.ds.Sector_frequency.values
+    A = site.ds.Weibull_A.values
+    k = site.ds.Weibull_k.values
+
+    freq_by_speed = np.zeros((n_sectors, n_speed_bins))
+    for i in range(n_sectors):
+        i0, i1 = i * sector_size, (i + 1) * sector_size
+        A_sector = np.mean(A[i0:i1])
+        k_sector = np.mean(k[i0:i1])
+        p_sector = np.mean(p[i0:i1])
+        cdf = 1 - np.exp(-(speed_bins / A_sector) ** k_sector)
+        freq_by_speed[i, :] = p_sector * np.diff(cdf)
+
+    directions = np.arange(n_sectors) * sector_size + sector_size / 2
+    theta = np.deg2rad(directions)
+
+    bottom = np.zeros(n_sectors)
+    for speed_idx in range(n_speed_bins):
+        ax.bar(
+            theta, freq_by_speed[:, speed_idx], width=np.deg2rad(sector_size) * 0.92,
+            bottom=bottom,
+            label=f'{speed_bins[speed_idx]:.0f}-{speed_bins[speed_idx + 1]:.0f} m/s',
+            color=colors[speed_idx], edgecolor='white', linewidth=0.6, zorder=3
+        )
+        bottom += freq_by_speed[:, speed_idx]
+
+    ax.set_theta_zero_location('N')
+    ax.set_theta_direction(-1)
+    ax.set_title(wf_name, pad=16, fontsize=11)
+
+    ax.set_xticks(np.deg2rad(np.arange(0, 360, 30)))
+    ax.set_xticklabels([f'{int(d)}°' for d in np.arange(0, 360, 30)], fontsize=8.5, color='#444444')
+
+    # Light, informative radial grid instead of hiding it entirely
+    ax.set_yticklabels([])
+    ax.yaxis.grid(True, color='#cccccc', linewidth=0.6, alpha=0.7, zorder=0)
+    ax.xaxis.grid(True, color='#cccccc', linewidth=0.6, alpha=0.7, zorder=0)
+    ax.spines['polar'].set_color('#999999')
+    ax.spines['polar'].set_linewidth(0.8)
+    ax.set_facecolor('white')
+
+# Shared legend below the grid
+handles, labels = axes[0].get_legend_handles_labels()
+fig.legend(
+    handles, labels, loc='lower center', ncol=n_speed_bins,
+    bbox_to_anchor=(0.5, -0.01), frameon=False, fontsize=9,
+    title='Wind speed', title_fontsize=9
+)
+
+plt.tight_layout(rect=[0, 0.04, 1, 0.97])
+plt.show()

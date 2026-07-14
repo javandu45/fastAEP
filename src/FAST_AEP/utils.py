@@ -30,7 +30,8 @@ def generic_site(wind_farm):
     Generate a UniformWeibullSite based on wind speed characteristics from a CSV file.
     """
 
-    wind_char = pd.read_csv(f"data/wind/{wind_farm}.csv", index_col=0)
+    data_folder = Path(__file__).parent.parent.parent / "data/wind"
+    wind_char = pd.read_csv(f"{data_folder}/{wind_farm}.csv", index_col=0)
 
     wind_char = wind_char.reset_index()
 
@@ -122,6 +123,7 @@ def average_ws_site(ws=11):
     Get the average wind speed and probability distribution from a CSV file.
     """
 
+    data_folder = Path(__file__).parent.parent.parent / "data/wind"
     wind_char = pd.read_csv(f"wind_roses/wind_rose_{ws}.csv", index_col=0)
 
     wind_char = wind_char.reset_index()
@@ -155,7 +157,9 @@ def turbine_generator(wind_farm):
 def get_limits(wind_farm):
     """Get wind farm limits from CSV file based on wind farm name"""
 
-    limits = pd.read_csv(f"data/boundaries/{wind_farm}.csv", index_col=0)
+    folder_path = str(Path(__file__).parent.parent.parent / "data/boundaries") 
+    file_path = f"{folder_path}/{wind_farm}.csv"
+    limits = pd.read_csv(file_path, index_col=0)
     limits = np.array(limits)
 
     return limits
