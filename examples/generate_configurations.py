@@ -21,6 +21,10 @@ aep_methods = {
     "RQ": 8, "SGD": 4
 }
 
+aep_methods = {
+    "BQ": 8
+}
+
 # Wake models to study
 wake_models = ["TurbOPark"]
 

@@ -48,7 +48,7 @@ def setup_BQ_wfm(base_wfm, aep_method):
 
 
 # Generate testing layout
-x, y = _random_square_layout(100, spacing=4)  # 100 turbines with 4 rotor diameters spacing
+x, y = _random_square_layout(50, spacing=4)  # 100 turbines with 4 rotor diameters spacing
 
 # Function to set up wind farm models
 # 1. 360 WD
@@ -59,7 +59,7 @@ x, y = _random_square_layout(100, spacing=4)  # 100 turbines with 4 rotor diamet
 # 6. BQ
 # 7. RQ
 # 8. SGD
-aep_models = ["360 WD", "72 WD", "Average WS", "Uniform CT", "FLOWERS", "BQ", "RQ", "SGD"]
+aep_models = ["360 WD", "72 WD", "Average WS", "Uniform CT", "FLOWERS", "BQ", "RQ"]
 
 def setup_wfm(deficit_model):
 
@@ -97,7 +97,7 @@ def setup_wfm(deficit_model):
 
 
 # Function to calculate and time all AEPs
-def compute_aep(n_CPUs, wfms, n_repeats=1):
+def compute_aep(n_CPUs, wfms, n_repeats=5):
 
     times_results = []
     for wfm in wfms:
@@ -115,7 +115,7 @@ def compute_aep(n_CPUs, wfms, n_repeats=1):
 
     return times_results
 
-def compute_gradients(n_CPUs, wfms, n_repeats=1):
+def compute_gradients(n_CPUs, wfms, n_repeats=5):
 
     times_results = []
     for wfm in wfms:
@@ -156,7 +156,7 @@ results = {}
 for n_CPUs in n_CPUs_list:
     results[n_CPUs] = {}
     for deficit, wfms in wfm_all.items():
-        times = compute_gradients(n_CPUs, wfms)
+        times = compute_aep(n_CPUs, wfms)
         results[n_CPUs][deficit] = dict(zip(aep_models, times))
 
 # Save and print results in a table with all dimensions (CPU, deficit, WFM)
@@ -172,6 +172,6 @@ for n_CPUs, deficit_data in results.items():
             })
 
 df = pd.DataFrame(records)
-df.to_csv("parallelization_g_results_100.csv", index=False)
+df.to_csv("parallelization_results_50.csv", index=False)
 
 print(df.pivot_table(index=["deficit", "wfm"], columns="n_CPUs", values="time_s").to_string(float_format=lambda v: f"{v:.3f}"))
