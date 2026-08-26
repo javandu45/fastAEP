@@ -25,6 +25,10 @@ class SGD(BasicWFM):
 
     def _sampling(self):
 
+        """
+        Sample wind direction and wind speed based on Weibull distribution and site data.
+        """
+
         scenario = np.random.choice(self.wd, size=self.n_samples, p=self.freqs)
         A_scenario = self.A[scenario.astype(int)]
         K_scenario = self.K[scenario.astype(int)]
@@ -37,6 +41,10 @@ class SGD(BasicWFM):
 
     def aep(self, x, y, n_cpu=1):
 
+        """
+        AEP=0 in SGD model.
+        """
+
         AEP = 0
 
         return float(AEP)
@@ -44,7 +52,11 @@ class SGD(BasicWFM):
 
     def aep_gradient(self, x, y, gradient_method=autograd, n_cpu=1):
 
-        wd, ws = self._sampling()  # _sampling returns (wd, ws)
+        """
+        Compute AEP gradients using autograd
+        """
+
+        wd, ws = self._sampling()
 
         jx, jy = self.wfm.aep_gradients(gradient_method=gradient_method,
                                                x=x,

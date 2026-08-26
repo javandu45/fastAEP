@@ -1,0 +1,29 @@
+Wind Farm,AEP Model,Median,Std Dev,Count
+Hornsea 3,360 WD,39.0,6.56,29
+Hornsea 3,72 WD,41.5,6.04,30
+Hornsea 3,Average WS,50.5,8.77,30
+Hornsea 3,FLOWERS,89.5,11.21,30
+Hornsea 3,Uniform C$_T$,48.0,7.72,30
+Hornsea 3,BQ,155.5,58.60,30
+Hornsea 3,RQ,123.0,31.38,30
+Sofia,360 WD,38.0,5.40,30
+Sofia,72 WD,37.0,6.13,30
+Sofia,Average WS,31.0,5.16,30
+Sofia,FLOWERS,287.0,8.38,30
+Sofia,Uniform C$_T$,29.0,4.04,30
+Sofia,BQ,178.5,34.35,30
+Sofia,RQ,62.5,15.78,30
+Thor,360 WD,131.0,53.43,30
+Thor,72 WD,132.0,53.33,30
+Thor,Average WS,851.0,198.79,30
+Thor,FLOWERS,143.0,40.13,30
+Thor,Uniform C$_T$,767.0,248.83,30
+Thor,BQ,140.5,30.26,30
+Thor,RQ,199.0,156.63,30
+Hornsea 2,360 WD,175.5,26.20,30
+Hornsea 2,72 WD,179.5,35.75,30
+Hornsea 2,Average WS,944.5,308.98,30
+Hornsea 2,FLOWERS,184.5,19.15,30
+Hornsea 2,Uniform C$_T$,921.5,321.00,30
+Hornsea 2,BQ,173.0,29.46,29
+Hornsea 2,RQ,283.5,111.14,30

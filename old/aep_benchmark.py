@@ -79,7 +79,7 @@ for aep_method in aep_methods:
         aeps_runs = []
         times_runs = []
 
-        for run in range(5):
+        for run in range(1):
             x, y = generate_array(n_tur=n_turbines, turbine=turbine, spacing=5)
 
             if aep_method == "FLOWERS":
@@ -116,7 +116,7 @@ for aep_method in aep_methods:
         aeps_runs = []
         times_runs = []
 
-        for run in range(5):
+        for run in range(1):
             x, y = generate_array(n_tur=n_turbines, turbine=turbine, spacing=5)
 
             if aep_method == "FLOWERS":
@@ -153,7 +153,7 @@ for aep_method in aep_methods:
         aeps_runs = []
         times_runs = []
 
-        for run in range(5):
+        for run in range(1):
             x, y = generate_array(n_tur=n_turbines, turbine=turbine, spacing=5)
 
             if aep_method == "FLOWERS":
@@ -175,18 +175,18 @@ for aep_method in aep_methods:
 import pandas as pd
 
 df_noj = pd.DataFrame(aeps_noj, index=turbine_ranges)
-df_noj.to_csv("results/benchmark_aep_noj_no_parallel.csv")
+df_noj.to_csv("results/benchmark_aep_noj_2.csv")
 df_gaussian = pd.DataFrame(aeps_gaussian, index=turbine_ranges)
-df_gaussian.to_csv("results/benchmark_aep_gaussian_no_parallel.csv")
+df_gaussian.to_csv("results/benchmark_aep_gaussian_2.csv")
 df_turbopark = pd.DataFrame(aeps_turbopark, index=turbine_ranges)
-df_turbopark.to_csv("results/benchmark_aep_turbopark_no_parallel.csv")
+df_turbopark.to_csv("results/benchmark_aep_turbopark_2.csv")
 
-df_noj_time = pd.DataFrame(times_noj, index=turbine_ranges)
-df_noj_time.to_csv("results/benchmark_runtime_noj_no_parallel.csv")
-df_gaussian_time = pd.DataFrame(times_gaussian, index=turbine_ranges)
-df_gaussian_time.to_csv("results/benchmark_runtime_gaussian_no_parallel.csv")
-df_turbopark_time = pd.DataFrame(times_turbopark, index=turbine_ranges)
-df_turbopark_time.to_csv("results/benchmark_runtime_turbopark_no_parallel.csv")
+# df_noj_time = pd.DataFrame(times_noj, index=turbine_ranges)
+# df_noj_time.to_csv("results/benchmark_runtime_noj_no_parallel.csv")
+# df_gaussian_time = pd.DataFrame(times_gaussian, index=turbine_ranges)
+# df_gaussian_time.to_csv("results/benchmark_runtime_gaussian_no_parallel.csv")
+# df_turbopark_time = pd.DataFrame(times_turbopark, index=turbine_ranges)
+# df_turbopark_time.to_csv("results/benchmark_runtime_turbopark_no_parallel.csv")
 
 
 # Plot results

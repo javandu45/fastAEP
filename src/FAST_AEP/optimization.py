@@ -14,6 +14,10 @@ warnings.filterwarnings("ignore")
 
 class optifast:
 
+    """
+    Class for setting up the optimization problem for the wind farm.
+    """
+
     def __init__(self, wind_farm, wind_farm_model, min_spacing=2, normalization=True, x_0=None, y_0=None, n_cpu=1, seed=None):
 
         self.wind_farm = wind_farm
@@ -66,6 +70,7 @@ class optifast:
         self.max_x = self.wf_limits[:, 0].max()
         self.max_y = self.wf_limits[:, 1].max()
 
+        # Calculate AEP_0 for normalization if necessary
         if self.normalization:
             self.aep_0 = self.wind_farm_model.aep(self.x_0, self.y_0) + 1e-12  # Added because AEP from SGD is zero
 
@@ -123,7 +128,7 @@ class optifast:
         """Set up gradient function, in this case AEP gradient"""
 
         def aep_gradient(x, y):
-            # Some wind farm models (e.g. FLOWERS) do not accept n_cpu, or accounted for it before (BQ, RQ)
+            # Some wind farm models (e.g. FLOWERS) do not accept n_cpu, or accounted for it in model setup (BQ, RQ)
             # Ignore it for those models
             model_name = self.wind_farm_model.name
             if model_name in ["FLOWERS", "BQ", "RQ"]:
@@ -142,6 +147,7 @@ class optifast:
         wf_limits_const = XYBoundaryConstraint(self.wf_limits, self.boundary_type)
 
         # Distance constraints
+        # When considering distancing constraints
         if self.min_spacing is not None:
             minimum_distance = self.min_spacing * self.windTurbines.diameter()
             turbine_separation_constrain = SpacingConstraint(min_spacing=minimum_distance)
@@ -149,12 +155,13 @@ class optifast:
             if self.wind_farm_model.name == "SGD":
                 constrains = DistanceConstraintAggregation(wf_limits_const, self.n_turbines, self.min_spacing*self.windTurbines.diameter(), self.windTurbines)
                 return [constrains]
-
             else:
                 return [turbine_separation_constrain, wf_limits_const]
-        
+
+        # When not considering distancing constraints
         else:
             if self.wind_farm_model.name == "SGD":
+                # "min_distaincing_min" is set to 0 because the distance constraint is not considered
                 constrains = DistanceConstraintAggregation(wf_limits_const, self.n_turbines, 0, self.windTurbines)
                 return [constrains]
             
@@ -181,6 +188,7 @@ class optifast:
         
         # Set up driver
         if self.wind_farm_model.name == "SGD":
+            # Values taken from paper
             learning_rate = self.windTurbines.diameter()/5
             gamma_min_factor = 0.1
             driver = EasySGDDriver(maxiter=max_iter, learning_rate=learning_rate, gamma_min_factor=gamma_min_factor)

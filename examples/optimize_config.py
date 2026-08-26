@@ -67,6 +67,7 @@ def main():
 
     # Normalization
     normalization = True
+    # For SGD, normalization does not work
     if aep_method == "SGD":
         normalization = False
 

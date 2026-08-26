@@ -12,7 +12,7 @@ from py_wake.literature.gaussian_models import Bastankhah_PorteAgel_2014
 from py_wake.literature.turbopark import Nygaard_2022
 from py_wake.literature.noj import Jensen_1983
 import numpy as np
-from utils import generate_random_array, generic_site
+from FAST_AEP.utils import generate_random_array, generic_site, turbine_generator, get_limits
 from matplotlib import pyplot as plt
 from topfarm.constraint_components.boundary import XYBoundaryConstraint
 from topfarm.constraint_components.spacing import SpacingConstraint
@@ -24,13 +24,14 @@ from py_wake.utils.gradients import autograd, fd
 import time
 
 # Set up problem conditions
-site = generic_site(ws=10)
+site = generic_site("Hornsea_Project_2_-_Phase_1_Breesea")
 # site = Hornsrev1Site()
-turbine = V80()
+turbine = turbine_generator("Hornsea_Project_2_-_Phase_1_Breesea")
 N_turbines = 9
 turbines_per_row = int(np.sqrt(N_turbines))
 sep = turbines_per_row*6*turbine.diameter()
 limits = np.array([(0, 0), (sep, 0), (sep,sep), (0, sep)])
+limits = get_limits("Hornsea_Project_2_-_Phase_1_Breesea")
 min_dist = 5*turbine.diameter()
 x_init, y_init = generate_random_array(n_tur=N_turbines, turbine=turbine, spacing=4, limits=limits)
 # x_init, y_init = Hornsrev1Site().initial_position.T
@@ -54,31 +55,32 @@ BQ_wfm = bayesian_quadrature(site=site,
                             y0=y_init,
                             N_train=3000,
                             N_MC=4000, 
-                            aep_method="MC",
+                            aep_method="BQ",
                             kernel_type="linear")
 
 BQ_wfm.train_and_get_kernel()
 
 # %%
 
-BQ_wfm.optimize_BQ_points(N_points=360, N_attempts=3, tol=1e-8, jitter=0.1)
+BQ_wfm.optimize_BQ_points(N_points=360, N_attempts=10, tol=1e-8, jitter=0.1)
+BQ_wfm.plot_optimized_points()
 
 print("AEP from BQ: ", BQ_wfm.aep(x_init, y_init))
-BQ_wfm.setup_gradients(gradient_method=autograd)
+# BQ_wfm.setup_gradients(gradient_method=autograd)
 
-# # %%
-time_start = time.time()
-grad_x, grad_y = BQ_wfm.aep_gradients(x=x_init, y=y_init)
-time_end = time.time()
-print(f"Time taken to compute gradients: {time_end - time_start:.2f} seconds")
+# # # %%
+# time_start = time.time()
+# grad_x, grad_y = BQ_wfm.aep_gradients(x=x_init, y=y_init)
+# time_end = time.time()
+# print(f"Time taken to compute gradients: {time_end - time_start:.2f} seconds")
 
-BQ_wfm.setup_gradients(gradient_method=fd)
+# BQ_wfm.setup_gradients(gradient_method=fd)
 
-# # %%
-time_start = time.time()
-grad_x_fd, grad_y_fd = wfm.aep_gradients(x=x_init, y=y_init)
-time_end = time.time()
-print(f"Time taken to compute gradients: {time_end - time_start:.2f} seconds")
+# # # %%
+# time_start = time.time()
+# grad_x_fd, grad_y_fd = wfm.aep_gradients(x=x_init, y=y_init)
+# time_end = time.time()
+# print(f"Time taken to compute gradients: {time_end - time_start:.2f} seconds")
 
 
 #%% Set up FLOWERS AEP

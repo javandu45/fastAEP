@@ -124,7 +124,7 @@ def average_ws_site(ws=11):
     """
 
     data_folder = Path(__file__).parent.parent.parent / "data/wind"
-    wind_char = pd.read_csv(f"wind_roses/wind_rose_{ws}.csv", index_col=0)
+    wind_char = pd.read_csv(f"{data_folder}/{ws}.csv", index_col=0)
 
     wind_char = wind_char.reset_index()
 
@@ -141,7 +141,9 @@ def turbine_generator(wind_farm):
     turbine power, hub height, and rotor diameter.
     """
 
-    with open(f"data/turbines/{wind_farm}.json", 'r') as f:
+    folder_path = str(Path(__file__).parent.parent.parent / "data/turbines")
+
+    with open(f"{folder_path}/{wind_farm}.json", 'r') as f:
         turbine_data = json.load(f)
 
     turbine = GenericWindTurbine(

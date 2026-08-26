@@ -21,6 +21,9 @@ def obtain_windrose(wind_farm):
     wind_data["ws"] = pd.to_numeric(wind_data["ws"], errors='coerce')
     wind_data["wd"] = pd.to_numeric(wind_data["wd"], errors='coerce')
 
+    # Average wind speed
+    print(f"Average wind speed for {wind_farm}: {wind_data['ws'].mean():.2f} m/s")
+
     sectors = {}
     nd = 360
 
@@ -70,14 +73,12 @@ def obtain_windrose(wind_farm):
         "k": sectors_sum["k"]
     })
 
-    wind_char.to_csv(f"data/wind/{wind_farm}.csv", sep=",", index=False)
+    # wind_char.to_csv(f"data/wind/{wind_farm}.csv", sep=",", index=False)
 
 wind_farms_to_read = pd.read_csv("data/top_20_windfarms.csv")
 
 for _, row in wind_farms_to_read.iterrows():
     wind_farm = row["name"]
-    if wind_farm == "Hornsea_Project_3_HOW03":
-        print(f"Skipping {wind_farm} due to missing data.")
-        continue
+
     obtain_windrose(wind_farm)
 

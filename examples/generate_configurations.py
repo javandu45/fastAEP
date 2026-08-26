@@ -12,7 +12,7 @@ farms.remove("Gwynt_y_Mor")
 
 # Wind farms to study
 farms = ["Hornsea_Project_3_HOW03", "Thor","Hornsea_Project_2_-_Phase_1_Breesea", "Sofia"]
-farms = ["Hornsea_Project_2_-_Phase_1_Breesea", "Sofia"]
+farms = ["Hornsea_Project_2_-_Phase_1_Breesea"]
 
 # AEP methods to study, with number of CPUs to use for each method
 aep_methods = {
@@ -22,14 +22,14 @@ aep_methods = {
 }
 
 aep_methods = {
-    "BQ": 8
+    "SGD": 1
 }
 
 # Wake models to study
-wake_models = ["TurbOPark"]
+wake_models = ["NOJ"]
 
 # Number of multi starts considered
-n_multistarts = 20
+n_multistarts = 1
 
 # Tolerance for each (aep_method, wake_model) combination
 tolerances = {

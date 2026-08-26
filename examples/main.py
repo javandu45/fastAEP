@@ -17,9 +17,9 @@ import numpy as np
 
 def main():
 
-    wind_farm = "Hornsea_Project_2_-_Phase_1_Breesea"
-    wake_model = "TurbOPark"
-    aep_method = "FLOWERS"
+    wind_farm = "Sofia"
+    wake_model = "NOJ"
+    aep_method = "BQ"
     n_cpu = 1
     tol = 1e-6
 
@@ -155,7 +155,7 @@ def main():
 
     ########################################################################################
     # Total optimization - Including distance constraints from the beginning
-    optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm, min_spacing=None, n_cpu=n_cpu, normalization=True, seed=1)
+    optimization_problem = optifast(wind_farm=wind_farm, wind_farm_model=wfm, min_spacing=min_spacing, n_cpu=n_cpu, normalization=True, seed=1)
 
     tf_problem = optimization_problem.setup_problem(tolerance=tol, expected_cost=expected_cost, max_iter=200)
 
