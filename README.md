@@ -23,3 +23,7 @@ Each module includes a function to obtain AEP and its gradients. Besides these m
 The `generate_configurations.py` file generates the json file to be used by the `optimize_config.py`, which runs a single configuration of AEP model, wind farm and wake model, and stores in in the H5 file.
 
 All other functions have secondary purposes. Please refer to the specific file to see what their function is.
+
+## Data
+
+In the data folder, the different wind farm data, including wind roses, boundaries and the respective wind turbine can be found. These correspond to the data regarding the 4 used wind farms. The wind time series are obtained from the [New European Wind Atlas](https://map.neweuropeanwindatlas.eu/), while the boundaries and other data are downloaded from [Boundary Layer](https://www.boundary-layer.com/).
