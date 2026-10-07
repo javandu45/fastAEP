@@ -4,7 +4,6 @@ import random
 from shapely.geometry import Point, Polygon
 from scipy.special import gamma
 import json
-import re
 from pathlib import Path
 import h5py
 
@@ -27,7 +26,7 @@ from FAST_AEP.SGD import SGD
 def generic_site(wind_farm):
 
     """
-    Generate a UniformWeibullSite based on wind speed characteristics from a CSV file.
+    Generate a PyWake UniformWeibullSite based on wind speed characteristics from a CSV file.
     """
 
     data_folder = Path(__file__).parent.parent.parent / "data/wind"
@@ -137,7 +136,7 @@ def average_ws_site(ws=11):
 def turbine_generator(wind_farm):
 
     """
-    Generate pywake wind turbine object for the selected wind farm based on json file containing
+    Generate PyWake wind turbine object for the selected wind farm based on json file containing
     turbine power, hub height, and rotor diameter.
     """
 
@@ -220,6 +219,7 @@ def build_aep_model(aep_method, wind_farm, deficit_model, k = 0.05, n_cpu=1):
             aep_model = FLOWERS.gaussian_flowers(site=site, windTurbines=windTurbines, n_terms=10, k=k)
         elif deficit_model == "TurbOPark":
             aep_model = FLOWERS.TurbOPark_flowers(site=site, windTurbines=windTurbines, n_terms=10)
+    # Probabilistic methods need to generate initial training data and optimize the points for AEP calculation
     elif aep_method == "BQ":
         x, y = generate_random_array(n_tur=n_turbines, turbine=windTurbines, spacing=2, limits=limits, seed=55)
         aep_model = bayesian_quadrature(site=site,

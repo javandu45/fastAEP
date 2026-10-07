@@ -1,3 +1,7 @@
+
+# A ode to read and summarize results from AEP calculations with different methods, 
+# wind farms and wake models.
+
 import h5py
 import pandas as pd
 import numpy as np

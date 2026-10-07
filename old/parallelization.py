@@ -1,15 +1,13 @@
+
+# A code to obtain the computational time for the different AEP methods 
+# for an increasing number of CPUs, for the selected wind farm size.
+
 from FAST_AEP.basic_wfm import WD_Bins, average_WS, uniform_CT
 from FAST_AEP.FLOWERS import NOJ_flowers, gaussian_flowers, TurbOPark_flowers
 from FAST_AEP.BQ import bayesian_quadrature
 from FAST_AEP.SGD import SGD
-from py_wake.superposition_models import SquaredSum
-from py_wake.wind_farm_models import PropagateDownwind
-from py_wake.deficit_models import TurboNOJDeficit
-from py_wake.rotor_avg_models.area_overlap_model import AreaOverlapAvgModel
 
 from py_wake.examples.data.hornsrev1 import Hornsrev1Site, V80
-from py_wake.literature.noj import Jensen_1983
-from py_wake.literature.gaussian_models import Bastankhah_PorteAgel_2014
 
 import time
 import pandas as pd
@@ -24,7 +22,7 @@ turbines = V80()
 x, y = Hornsrev1Site().initial_position.T  # reference layout for GP training
 
 def _random_square_layout(n_tur: int, spacing: int):
-    side = int(np.sqrt(n_tur)) * spacing * turbines.diameter() * 1.5  # add some extra space to avoid edge effects
+    side = int(np.sqrt(n_tur)) * spacing * turbines.diameter() * 1.5  # add some extra space
     limits = np.array([(0, 0), (side, 0), (side, side), (0, side)])
     return generate_random_array(n_tur=n_tur, turbine=turbines, spacing=spacing, limits=limits)
 

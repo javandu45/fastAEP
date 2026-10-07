@@ -1,3 +1,7 @@
+
+# Benchamrking different AEP methods with different wake models and different number of turbines.
+# Both computation time and AEP.
+
 from FAST_AEP.utils import generic_site, generate_array, turbine_generator, basic_wfm, build_wfm
 from FAST_AEP import FLOWERS
 from FAST_AEP.BQ import bayesian_quadrature

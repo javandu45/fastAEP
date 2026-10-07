@@ -1,3 +1,8 @@
+
+
+# A code to run the optimization for a single configuration, given the configuration
+# file (from generate_configurations.py) and the task ID.
+
 import argparse
 import json
 import time

@@ -3,7 +3,6 @@ from topfarm.constraint_components.spacing import SpacingConstraint
 from topfarm.cost_models.cost_model_wrappers import CostModelComponent
 from topfarm import TopFarmProblem
 from topfarm.easy_drivers import EasyScipyOptimizeDriver, EasySGDDriver
-from topfarm.plotting import XYPlotComp
 from topfarm.constraint_components.constraint_aggregation import DistanceConstraintAggregation
 
 from FAST_AEP.utils import *

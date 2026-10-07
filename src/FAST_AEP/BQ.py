@@ -6,7 +6,6 @@ from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 from py_wake.utils.gradients import autograd, fd
 import autograd.numpy as anp
-import time
 
 class bayesian_quadrature():
 
@@ -608,11 +607,6 @@ class bayesian_quadrature():
 
         if self.aep_method == "BQ":
 
-            # Pre-compute the constant BQ weight vector so we can fold the
-            # weighted sum into wf_power, making its output a scalar.
-            # jacobian (used internally by autograd with vector_interdependence=True)
-            # does one backward pass per output element, so a scalar output means
-            # only 1 backward pass instead of len(wd) passes.
             c_const = (8760 / 1e9 * self.w_opt.T @ np.linalg.inv(self.k_opt)).ravel()
 
             # Define a function that computes the weighted power sum for the optimized points, which is the core of the AEP computation.

@@ -1305,7 +1305,6 @@ class gaussian_flowers(FLOWERS_model):
 
         # Derivatives of the per-pair scalars with respect to r_ij, used later
         dr_a = -self.epsilon / r_ij**2
-        # dg/dr (Equation G.12); clamped to zero in the region where g is held at zero in aep_i
         dg = anp.where(anp.abs(r_ij) < self.lim, 0.0, -self.CT * self.k / (8 * sigma**3 * sqrt))
         # ---------------------------------------------------------------------------
 
@@ -1319,13 +1318,11 @@ class gaussian_flowers(FLOWERS_model):
         A = anp.array(self.fc["a"])[anp.newaxis, anp.newaxis, :]
         PHI = anp.array(self.fc["b"])[anp.newaxis, anp.newaxis, :]
 
-        # Gaussian attenuation factors E1 (alpha = 1) and E2 (alpha = 2) - Equation 19
         E1 = anp.exp((-t**2 * r_a**2)/2)
         E2 = anp.exp((-t**2 * r_a**2)/4)
 
         # ---------------------------------------------------------------------------
         # RADIAL KERNEL K_t AND ITS DISTANCE DERIVATIVE dK_t/dr
-        # K_t - Equation G.4 (the same -3*I1 + 3*I2 kernel evaluated in aep_i)
         K = -3 * anp.sqrt(2 * anp.pi) * g * r_a * E1 + 3 * anp.sqrt(anp.pi) * g**2 * r_a * E2
 
         # dK_t/dr - Equation G.14 (product rule on g, r_a, E1, E2; no theta_c, no k_eff feedback)

@@ -1,3 +1,7 @@
+
+# Code used to generate several plots for the paper
+# A comparison of efficient AEP models for Wind Farm Layout Optimization
+
 # %%
 import numpy as np
 import matplotlib.pyplot as plt
@@ -340,7 +344,7 @@ aep_models = ["360_WD", "72_WD", "Average_WS", "FLOWERS", "Uniform_CT", "BQ", "R
 wind_farms = ["Hornsea_Project_3_HOW03", "Thor", "Hornsea_Project_2_-_Phase_1_Breesea", "Sofia"]
 wind_farm_names = ["Hornsea 3 \n (231 WT)", "Thor \n (72 WT)", "Hornsea 2 \n (55 WT)", "Sofia \n (100 WT)"]
 
-results_dir = Path(__file__).resolve().parent.parent / "results/optimization/Iteration_3_4WF_20starts"
+results_dir = Path(__file__).resolve().parent.parent / "results/optimization/Iteration_3_4WF_30starts"
 n_starts = 30
 
 # Normalize with respect to: "360_WD" or "max"
@@ -760,7 +764,7 @@ method_names = []
 
 # Load data for all wind farms
 for wind_farm in wind_farms:
-    results_file = Path(__file__).parent.parent / "results" / "optimization" / "Iteration_3_4WF_20starts"/ f"windfarm_{wind_farm}.h5"
+    results_file = Path(__file__).parent.parent / "results" / "optimization" / "Iteration_3_4WF_30starts"/ f"windfarm_{wind_farm}.h5"
     
     with h5py.File(results_file, "r") as f:
         for aep_model in aep_models:
@@ -882,7 +886,7 @@ method_names = []
 for wind_farm in wind_farms:
     results_file = (
         Path(__file__).parent.parent / "results" / "optimization"
-        / "Iteration_3_4WF_20starts" / f"windfarm_{wind_farm}.h5"
+        / "Iteration_3_4WF_30starts" / f"windfarm_{wind_farm}.h5"
     )
 
     with h5py.File(results_file, "r") as f:

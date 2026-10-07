@@ -1,3 +1,6 @@
+
+# A code to generate configurations for AEP calculations with different methods, wake models, and tolerances.
+
 import itertools, json
 from pathlib import Path
 import pandas as pd

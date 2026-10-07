@@ -1,3 +1,8 @@
+
+# Obtain the wind rose for a location using the wind data from the netCDF file.
+# The wind rose is saved to a CSV file, to be used later to obtain the PyWake
+# Site object.
+
 import xarray as xr
 import pandas as pd
 import numpy as np
@@ -73,7 +78,7 @@ def obtain_windrose(wind_farm):
         "k": sectors_sum["k"]
     })
 
-    # wind_char.to_csv(f"data/wind/{wind_farm}.csv", sep=",", index=False)
+    wind_char.to_csv(f"data/wind/{wind_farm}.csv", sep=",", index=False)
 
 wind_farms_to_read = pd.read_csv("data/top_20_windfarms.csv")
 

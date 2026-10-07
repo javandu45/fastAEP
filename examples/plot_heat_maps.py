@@ -24,7 +24,7 @@ wind_farms = ["Hornsea_Project_3_HOW03", "Sofia", "Thor", "Hornsea_Project_2_-_P
 wind_farm_names = ["Hornsea 3 \n (231 WT, C)", "Sofia \n (100 WT, C, DC)", "Thor \n (72 WT, NC)", "Hornsea 2 \n (55 WT, NC, DC)"]
 
 
-results_dir = Path(__file__).parent.parent / "results" / "optimization" / "Iteration_3_4WF_20starts"
+results_dir = Path(__file__).parent.parent / "results" / "optimization" / "Iteration_3_4WF_30starts"
 n_starts = 30
 
 # Normalize with respect to: "360_WD" or "max"

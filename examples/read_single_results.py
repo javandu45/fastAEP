@@ -1,3 +1,8 @@
+
+
+# A code to read and summarize results from AEP calculations with different methods,
+# wind farms, and wake models.
+
 import h5py
 from pathlib import Path
 import pandas as pd
@@ -10,7 +15,7 @@ wake_model = "NOJ"
 median = True
 n_starts = 30
 
-results_dir = Path("results/optimization/Iteration_3_4WF_20starts")
+results_dir = Path("results/optimization/Iteration_3_4WF_30starts")
 # results_dir = Path("results/optimization")
 h5_path = results_dir / f"windfarm_{farm_id}.h5"
 # h5_path = "windfarm_Hornsea_Project_3_HOW03.h5"

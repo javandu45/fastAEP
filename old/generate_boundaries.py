@@ -1,3 +1,8 @@
+
+# Extract the top 20 largest wind farms (in terms of capacity) from the boundary layer
+# dataset and save their boundaries to CSV files and turbine data to JSON files. Some 
+# other filtering is applied.
+
 import geopandas as gpd
 
 all_wf = gpd.read_file("data/raw/boundary-layer-active-wind-farms.gpkg")

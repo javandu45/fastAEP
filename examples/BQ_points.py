@@ -1,3 +1,6 @@
+
+# A code to check the number of multistarts needed for BQ to converge to a stable AEP value.
+
 #%%
 from FAST_AEP.BQ import bayesian_quadrature
 from FAST_AEP.utils import generic_site

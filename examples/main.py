@@ -1,3 +1,6 @@
+
+# A code to run a single optimization with the input data in the code
+
 from FAST_AEP.optimization import optifast
 from FAST_AEP.utils import generic_site, turbine_generator, build_aep_model
 from FAST_AEP.BQ import bayesian_quadrature

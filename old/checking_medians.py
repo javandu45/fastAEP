@@ -1,3 +1,7 @@
+
+# A code to check the number of starts needed to get a stable median AEP and
+# runtime for each method and wind farm, using the bootstra method. (AI)
+
 import h5py
 import numpy as np
 from pathlib import Path
